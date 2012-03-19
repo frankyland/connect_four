@@ -1,0 +1,50 @@
+= Connect four
+
+Console based "Vier gewinnt".
+
+== Game play
+
+playerx> 2
+
+ 12345678
+ ........
+ ........
+ ........
+ ........
+ ........
+ ........
+ ..xoox..
+ .xxoox x
+
+
+playero> 4
+
+ 12345678
+ ........
+ ........
+ ........
+ ........
+ ........
+ ...o....
+ ..xoox..
+ .xxoox x
+
+
+
+== Test driven development (TDD) with test-unit
+
+  rake test
+
+
+== Enviornment
+
+* ruby-1.9-3-p125
+* rvm
+** rvm install ruby-1.9.3
+** rvm use 1.9.3
+** ruby -v # => 1.9.3
+
+* gems
+** bundler # Gemfile
+** rake    # Rakefile
+** test-unit # -> minitest
