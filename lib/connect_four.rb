@@ -1,6 +1,6 @@
 require 'gamefield'
 require 'player'
-require 'logik'
+require 'logic'
 
 module ConnectFour
   def self.hello_world
