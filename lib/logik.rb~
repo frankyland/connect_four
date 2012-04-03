@@ -1,0 +1,59 @@
+class Logik
+	def initialize(counter)
+	@ counter = counter	
+		
+	end
+	def WalkThrough
+	
+
+	end	
+
+
+	def WinChance
+		
+		if 
+		end
+	
+	end
+
+	def set_column(number)
+	@number = number
+		if number != 0
+			if stone_counter > 7
+				case number
+					when 1 
+					  lighten_runtime.[0] = stone_counter
+					when 2
+					  lighten_runtime.[1] = stone_counter
+					when 3 
+					  lighten_runtime.[2] = stone_counter
+					when 4 
+					  lighten_runtime.[3] = stone_counter
+					when 5 
+					  lighten_runtime.[4] = stone_counter
+					when 6 
+					  lighten_runtime.[5] = stone_counter
+					when 7
+					  lighten_runtime.[6] = stone_counter
+					when 8 
+					  lighten_runtime.[7] = stone_counter
+				end	
+			
+			end
+			
+
+		else puts "please insert a number between 1 and 8"	
+		end
+
+	def lighten_runtime.[7]
+
+	end 
+
+
+
+
+
+
+
+	
+end

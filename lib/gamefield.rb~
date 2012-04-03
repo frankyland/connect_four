@@ -1,0 +1,25 @@
+class GameField
+   
+   def createfield
+    # Constants for Field rows and columns
+    ROWS =8
+    COLS =8
+    #Start Index for the Koordinate of the Field
+    i,j =0
+
+    #Defined a 2 Dimensional Array
+      def cf.[](ROWS, COLS)
+      end
+
+    #Filled the 8x8 Field with the "." Symbol
+    while  i < ROWS do
+	j=0
+	while j < COLS do
+		cf.[](i,j).map('.') 
+		j += 1
+	end
+	i += i + 1
+    end
+   end
+
+  end
