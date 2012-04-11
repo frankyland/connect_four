@@ -12,11 +12,16 @@ class GameField
 		[player_x, player_o]
 	end 
 	
+	# The Method create a 2 dimensional Array for the Information needed for for every turn.
 	def  arrays(rows,cols) 
 		a= Array.new(rows)
 		a.map{Array.new(cols)}
 	end
-	def CreateGameFieldArray
+	
+	# "create_gamefield_array" defined a 2 dimensional Array and fill it with a Symbol to
+        # define "nil" on the gamefield.
+	# The Method returns the Gamefield
+	def create_gamefield_array
 	
 	
 	@field = arrays(8,8)		
@@ -36,8 +41,8 @@ class GameField
 		@field.each
 		return @field
 	end
-
-	def CreateGameField(out, field)
+	# Print the field in his current state with all changes which appeared during the game
+	def print_game_field(out, field)
 
 
   	out.puts  "/--------------------------------\\" 
@@ -96,6 +101,8 @@ class GameField
 
 	    	
 	end
+
+
   def print_row(out, row, field)
     column = 1
     1.upto(8) do 
@@ -109,14 +116,21 @@ class GameField
 	print field[row][column]
   end
   
-
+#Add an Object in the current 2 dimensional Array
+# Primary the column is important since the Method walks the Column down till an Element is found
 def add_object( column, object ,field)
   # not allowed if the Column is full
   allowed = true
   i=0
 	if field[i][column] == '.'
 		while i<8
-		   if field[i+1][column] !== '.'
+		# this loop exist to step the column down till there is an Element. 
+		# Is an Element found then the new Element will be INstern before the existing
+		 if 
+
+		 end
+  
+		 if field[i+1][column] !== '.'
 			field[i][column] = object
 			break
 		   else i +=1
@@ -126,30 +140,6 @@ def add_object( column, object ,field)
 end
 
 
-
-def TheEnd?(turn)
-  turn == nil ? false : zuege.size >= 9
-end
-
-# Lässt 2 Spieler miteinander spielen
-def TwoPLayerGame(out, on, field)
-  player = [[:First_Player, 'X'], [:Second_player, 'O']]
-  who = 0
-  while true
-    act_turn_right = false
-    until act_turn_right
-      out.print "#It's {player[who][1]} turn: "
-      number = on.gets.to_i
-      break if number == 0
-      act_turn_right = add_object( column, number, field)
-    end
-    CreateGameField(out, field)
-    break if TheEnd?(field) or !act_turn_right
-    who += 1
-    who %= 2
-  end
-  player[who]
-end
 
 
 end
