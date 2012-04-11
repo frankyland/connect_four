@@ -1,9 +1,9 @@
 #Erzeugen eines Arrays der Als Spalte des Spielfeldes fungieren soll
 class ArrayColumn
-	def initialize(array_length)
-		@array_length = array_length
+	
+	def  arrays(rows,cols) 
+		a= Array.new(rows)
+		a.map!{Array.new(cols)}
 	end
 	
-	def  array_column = new.Array[@array_length]
-	end
 end

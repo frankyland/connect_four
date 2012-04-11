@@ -3,8 +3,11 @@ require 'test/unit'
 
 class TestArrayColumn < Test::Unit::TestCase
 
-	def test_create_array_column
-			assert_send(array.new.array_column, "true")			
+	def Test_create_array_column
+	   test_column = NewGameField.new
+		test_column.CreateGameFieldArray
+		test_column.ShowField
+#			assert_send(array.new.array_column, "true")			
 	end
 
 end

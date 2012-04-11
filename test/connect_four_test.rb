@@ -1,5 +1,6 @@
 require 'test_helper'
-require 'test_player'
+require 'test_column'
+require 'test_gamefield'
 
 class ConnectFourTest < ConnectFourSpec
   def test_hello_world

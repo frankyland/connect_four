@@ -1,9 +1,14 @@
 require 'test_helper'
-require 'minitest/unit'
-require 'test/unit/assertions'
-require 'test/unit/testcase'
+require 'test/unit'
 
+class TestPlayer < Test::Unit::TestCase
 
-test_player = Player.new
+	def Test_create_player
+		player1 = Player.new(Mo)
+		player2 = Player.new(Max)
+		
+		puts player1, player2
+			
+	end
 
-if
+end
