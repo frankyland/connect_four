@@ -1,5 +1,6 @@
 require 'logic'
 require 'player'
+
 class GameField
 
 	def initialize()
@@ -21,25 +22,24 @@ class GameField
 	# "create_gamefield_array" defined a 2 dimensional Array and fill it with a Symbol to
         # define "nil" on the gamefield.
 	# The Method returns the Gamefield
-	def create_gamefield_array
+	def create_gamefield_array(field)
 	
 	
-	@field = arrays(8,8)		
+			
 		i=0
 
 		while i < 8 do
 			j=0
 			
 			while j < 8 do
-	  			@field[i][j] = "."
-				 j+=1
-			
+	  			field[i][j] 
+				 j+=1		
 			end
 			i+=1
 		end
 		
-		@field.each
-		return @field
+		
+		return field
 	end
 	# Print the field in his current state with all changes which appeared during the game
 	def print_game_field(out, field)
@@ -103,47 +103,37 @@ class GameField
 	end
 
 
-  def print_row(out, row, field)
-    column = 1
-    1.upto(8) do 
-      print_field(column, row, field)
-      out.print " | " unless column == 8
-    column += 1
-  end
+        def PrintRow(out, row, field)
+                column = 1
+		i= 0
+		row.to_i
+               while i< 8 do 
+              #  out.print field{ '.'}[row][column]
+                out.print " | " unless column == 8
+                column += 1
+		i+=1
+		end
+        end
 
-  def print_field(column, row, field)
-
-	print field[row][column]
-  end
+      
   
-#Add an Object in the current 2 dimensional Array
-# Primary the column is important since the Method walks the Column down till an Element is found
-def add_object( column, object ,field)
-  # not allowed if the Column is full
-  allowed = true
-  i=0
-	if field[i][column] == '.'
-		while i<8
+        #Add an Object in the current 2 dimensional Array
+        # Primary the column is important since the Method walks the Column down till an Element is found
+        def add_object( column, object ,field)
+         i=0
+	    if field[i][column] == '.'
+		while i<8 do
 		# this loop exist to step the column down till there is an Element. 
 		# Is an Element found then the new Element will be INstern before the existing
-		 if 
-
-		 end
   
-		 if field[i+1][column] !== '.'
+		 if field[i+1][column] != '.'
 			field[i][column] = object
 			break
-		   else i +=1
-		end   
-	else print " Column is Full, choose another"
-		
-end
+			i +=1
+		 end
+		end 
 
-
-
+	    end		
+        end
 
 end
-
-	
-
-

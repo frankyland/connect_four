@@ -1,4 +1,4 @@
-require 'GameField'
+require 'gamefield'
 class Logic
   def initialize
 	@game_field = GameField.new
@@ -22,15 +22,18 @@ class Logic
 		until turn_right
 			out.print " It's #{spieler[wer]} turn:" 
 			number = on.gets.to_i
-			break if number == 0
+			 if number == 0
+				break
+			 end
 			turn_right= @game_field.add_object(Logic.new(player[who], number))
 		end
 		@game_field.print( out)
 		winner = game_over(player[who], field)
 		end_turn= !@gamefield.free_field? or ( winner != nil)
-		break if (end_turn or !turn_right)
-		who +=1
-		who %2
+			break if (end_turn or !turn_right)
+			who +=1
+			who %2
+
 	end
 	
 	if winner != nil
@@ -38,9 +41,9 @@ class Logic
 	else
 		return nil
 	end
+end
 
-
-	def game_over(player[who], field)
+	def game_over(player, field)
 		i,j =0
 		counter = 1
 		
@@ -80,9 +83,11 @@ class Logic
 			end
 		end
 
-		if right== true or right_down==true or down == true or left_down = true
+		if right== true or right_down==true or down == true or left_down == true
 			return true
-		end else return false
+		else 
+			return false
+		end
 	
 	end
 
@@ -94,7 +99,9 @@ class Logic
 		if field[i][j+(counter-1)] == field[i][j+counter]
 			counter_right +=1
 			walkthrough_right(field,i,j,counter_right)
-		else return false
+		  else 
+			return false
+		end
 
 	end
 
@@ -106,8 +113,9 @@ class Logic
 		if field[i+(counter-1)][j+(counter-1)]	== field[i+counter][j+counter]
 			counter_right_down +=1
 			walkthrough_right_down(field,i,j,counter_right_down)
-		else return false
-
+		  else 
+			return false
+		end
 	end
 
 	def walkthrough_down(field, i, j, counter_down)
@@ -115,11 +123,12 @@ class Logic
 			return true
 		end
 	    
-		if field[i+(counter-1)][j]	== field[i+counter][j]
+		if field[i+(counter-1)][j] == field[i+counter][j]
 			counter_down +=1
 			walkthrough_down(field,i,j,counter_down)
-		else return false 
-
+		  else 
+			return false 
+		end
 	end
 	
 	def walkthrough_left_down(field, i, j, counter_left_down)
@@ -130,7 +139,9 @@ class Logic
 		if field[i-(counter-1)][j-(counter-1)]	== field[i-counter][j-counter]
 			counter_left_down +=1
 			walkthrough_left_down(field,i,j,counter_right_down)
-		else return false
+		  else 
+			return false
+		end
 
 	end
 
