@@ -1,10 +1,10 @@
 require 'gamefield'
 class Logic
   def initialize
-	#Initialize a Gamefield object
+	#Initialize a gamefield object to the class
 	@game_field = GameField.new
   end
-
+	# Define a Method that 2 player playing against each other connect four
   def two_player_game(out, on)
 	@game_field.print(out) 
   	
@@ -21,7 +21,7 @@ class Logic
 	while true
 		turn_right = false
 		until turn_right
-			out.print " It's #{spieler[wer]} turn:" 
+			out.print " It's #{spieler[who]} turn:" 
 			number = on.gets.to_i
 			 if number == 0
 				break
