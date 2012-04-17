@@ -1,6 +1,7 @@
 require 'gamefield'
 class Logic
   def initialize
+	#Initialize a Gamefield object
 	@game_field = GameField.new
   end
 

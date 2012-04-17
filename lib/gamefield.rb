@@ -14,10 +14,10 @@ class GameField
 	end 
 	
 	# The Method create a 2 dimensional Array for the Information needed for for every turn.
-	def  arrays(rows,cols) 
-		a= Array.new(rows)
-		a.map{Array.new(cols)}
-	end
+def  arrays(rows,cols) 
+a= Array.new(rows)
+return a.map{Array.new(cols)}
+end
 	
 	# "create_gamefield_array" defined a 2 dimensional Array and fill it with a Symbol to
         # define "nil" on the gamefield.
@@ -32,65 +32,66 @@ class GameField
 			j=0
 			
 			while j < 8 do
-	  			field[i][j] 
-				 j+=1		
+	  			field[i][j] ="."
+				 j+=1	
+					
 			end
 			i+=1
 		end
 		
 		
-		return field
+		@field = field
 	end
 	# Print the field in his current state with all changes which appeared during the game
-	def print_game_field(out, field)
+	def print_game_field(out)
 
 
   	out.puts  "/--------------------------------\\" 
         out.print "| " 
 
- 	PrintRow(out, 1, field)
+ 	print_row(out, 1)
 
 		out.puts " |" 
 		out.puts  "|---|---|---|---|---|---|---|---|" 
 		out.print "| " 
 
-	PrintRow(out, 2, field)
+	print_row(out, 2)
 
   		out.puts " |" 
 		out.puts  "|---|---|---|---|---|---|---|---|" 
 		out.print "| " 
 
-	PrintRow(out, 3, field)
+	print_row(out, 3)
 
 		out.puts " |" 
 		out.puts  "|---|---|---|---|---|---|---|---|" 
 		out.print "| " 
 
-	PrintRow(out, 4, field)
+	print_row(out, 4)
 
 		out.puts " |" 
 		out.puts  "|---|---|---|---|---|---|---|---|" 
 		out.print "| " 
 
- 	PrintRow(out, 5, field)
+ 	print_row(out, 5)
 
 		out.puts " |" 
 		out.puts  "|---|---|---|---|---|---|---|---|" 
 		out.print "| " 
 
-  	PrintRow(out, 6, field)
+  	print_row(out, 6)
 
 		out.puts " |" 
 		out.puts  "|---|---|---|---|---|---|---|---|" 
 		out.print "| " 
   
-	PrintRow(out, 7, field)
+	print_row(out, 7)
 
 		out.puts " |" 
 		out.puts  "|---|---|---|---|---|---|---|---|" 
 		out.print "| " 
 
-	PrintRow(out, 8, field)
+	print_row(out, 8)
 
 		out.puts " |" 
 		out.puts  "|---|---|---|---|---|---|---|---|" 
@@ -103,13 +104,14 @@ class GameField
 	end
 
 
-        def PrintRow(out, row, field)
+        def print_row(out, row)
                 column = 1
 		i= 0
-		row.to_i
+		row
                while i< 8 do 
-              #  out.print field{ '.'}[row][column]
-                out.print " | " unless column == 8
+              
+		out.print @field[i][column]
+                out.print " | " unless column ==8
                 column += 1
 		i+=1
 		end
