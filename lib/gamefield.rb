@@ -14,10 +14,11 @@ class GameField
 	end 
 	
 	# The Method create a 2 dimensional Array for the Information needed for for every turn.
-def  arrays(rows,cols) 
-a= Array.new(rows)
-return a.map{Array.new(cols)}
-end
+  def  arrays(rows,cols) 
+    a= Array.new(rows)
+
+    a.map{Array.new(cols)}
+  end
 	
 	# "create_gamefield_array" defined a 2 dimensional Array and fill it with a Symbol to
         # define "nil" on the gamefield.
@@ -43,13 +44,13 @@ end
 		@field = field
 	end
 	# Print the field in his current state with all changes which appeared during the game
-	def print_game_field(out)
+	def print_game_field()
 
 
-  	out.puts  "/--------------------------------\\" 
-        out.print "| " 
+  	puts  "/--------------------------------\\" 
+    print "| " 
 
- 	print_row(out, 1)
+   	print_row(out, 1)
 
 		out.puts " |" 
 		out.puts  "|---|---|---|---|---|---|---|---|" 
@@ -104,38 +105,37 @@ end
 	end
 
 
-        def print_row(out, row)
-                column = 1
+  def print_row(row)
+    column = 1
 		i= 0
 		row
-               while i< 8 do 
+    while i< 8 do 
               
-		out.print @field[i][column]
-                out.print " | " unless column ==8
-                column += 1
-		i+=1
+	  	print @field[i][column]
+      print " | " unless column ==8
+      column += 1
+	  	i+=1
 		end
-        end
+  end
 
       
   
-        #Add an Object in the current 2 dimensional Array
-        # Primary the column is important since the Method walks the Column down till an Element is found
-        def add_object( column, object ,field)
+  #Add an Object in the current 2 dimensional Array
+  # Primary the column is important since the Method walks the Column down till an Element is found
+  def add_object( column, object)
          i=0
-	    if field[i][column] == '.'
-		while i<8 do
-		# this loop exist to step the column down till there is an Element. 
-		# Is an Element found then the new Element will be INstern before the existing
-  
-		 if field[i+1][column] != '.'
-			field[i][column] = object
-			break
-			i +=1
-		 end
-		end 
+	  if @field[i][column] == '.'
+		  while i<8 do
+		  # this loop exist to step the column down till there is an Element. 
+    # Is an Element found then the new Element will be INstern before the existing
+	      if @field[i+1][column] != '.'
+			    @field[i][column] = object
+			  break
+			    i +=1
+		    end
+		  end 
 
-	    end		
-        end
+	  end		
+  end
 
 end
