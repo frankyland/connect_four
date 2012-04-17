@@ -45,70 +45,30 @@ class GameField
 	end
 	# Print the field in his current state with all changes which appeared during the game
 	def print_game_field()
-
+    i=1
 
   	puts  "/--------------------------------\\" 
     print "| " 
-
-   	print_row(out, 1)
-
-		out.puts " |" 
-		out.puts  "|---|---|---|---|---|---|---|---|" 
-		out.print "| " 
-
-	print_row(out, 2)
+    while i < 9 do
+	    print_row( i)
 
   		out.puts " |" 
-		out.puts  "|---|---|---|---|---|---|---|---|" 
-		out.print "| " 
-
-	print_row(out, 3)
-
-		out.puts " |" 
-		out.puts  "|---|---|---|---|---|---|---|---|" 
-		out.print "| " 
-
-	print_row(out, 4)
-
-		out.puts " |" 
-		out.puts  "|---|---|---|---|---|---|---|---|" 
-		out.print "| " 
-
- 	print_row(out, 5)
-
-		out.puts " |" 
-		out.puts  "|---|---|---|---|---|---|---|---|" 
-		out.print "| " 
-
-  	print_row(out, 6)
-
-		out.puts " |" 
-		out.puts  "|---|---|---|---|---|---|---|---|" 
-		out.print "| " 
-  
-	print_row(out, 7)
-
-		out.puts " |" 
-		out.puts  "|---|---|---|---|---|---|---|---|" 
-		out.print "| " 
-
-	print_row(out, 8)
-
-		out.puts " |" 
-		out.puts  "|---|---|---|---|---|---|---|---|" 
-		out.print "| " 
+		  out.puts  "|---|---|---|---|---|---|---|---|" 
+	  	out.print "| " 
+      i+=1
+    end
 
   
-	out.puts "\\----------------------------------/" 
+	puts "\\----------------------------------/" 
 
 	    	
 	end
 
-
+  #Print the line with the current field Element 
   def print_row(row)
     column = 1
 		i= 0
-		row
+
     while i< 8 do 
               
 	  	print @field[i][column]

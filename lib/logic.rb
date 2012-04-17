@@ -1,48 +1,48 @@
 require 'gamefield'
 class Logic
   def initialize
-	#Initialize a gamefield object to the class
-	@game_field = GameField.new
+	  #Initialize a gamefield object to the class
+	  @game_field = GameField.new
   end
 	# Define a Method that 2 player playing against each other connect four
   def two_player_game(out, on)
-	@game_field.print(out) 
+	  @game_field.print(out) 
   	
-	winner = game_over
-	end_turn= !@gamefield.n_field? or ( winner != nil)
-	player =@game_field.player
+	  winner = game_over
+	  end_turn= !@gamefield.n_field? or ( winner != nil)
+	  player =@game_field.player
 
 	
-	out.print   "Please Enter X or O for the game"
-	insert =  on.gets.downcase.chomp
-	who = nil
-	who = (enter == 'x') ? 1 : 0
+	  out.print   "Please Enter X or O for the game"
+	  insert =  on.gets.downcase.chomp
+	  who = nil
+	  who = (enter == 'x') ? 1 : 0
 
-	while true
-		turn_right = false
-		until turn_right
-			out.print " It's #{spieler[who]} turn:" 
-			number = on.gets.to_i
-			 if number == 0
-				break
-			 end
-			turn_right= @game_field.add_object(Logic.new(player[who], number))
-		end
-		@game_field.print( out)
-		winner = game_over(player[who], field)
-		end_turn= !@gamefield.free_field? or ( winner != nil)
-			break if (end_turn or !turn_right)
-			who +=1
-			who %2
+    while true
+		  turn_right = false
+		  until turn_right
+		  	out.print " It's #{spieler[who]} turn:" 
+		  	number = on.gets.to_i
+        if number == 0
+  				break
+  			end
+			  turn_right= @game_field.add_object(Logic.new(player[who], number))
+		  end
+		  @game_field.print( out)
+		  winner = game_over(player[who], field)
+		  end_turn= !@gamefield.free_field? or ( winner != nil)
+		  break if (end_turn or !turn_right)
+		  who +=1
+		  who %2
 
-	end
+    end 
 	
-	if winner != nil
-		return  player[who]
-	else
-		return nil
-	end
-end
+	  if winner != nil
+		  return  player[who]
+	  else
+		  return nil
+	  end
+  end
 
 	def game_over(player, field)
 		i,j =0
@@ -51,7 +51,7 @@ end
 		while i < 8 
 			
 			j =0
-			while j<8
+		  while j<8
 				if field[i][j] == object
 					the_winner = walktrough(field,i,j)
 				end
@@ -100,7 +100,7 @@ end
 		if field[i][j+(counter-1)] == field[i][j+counter]
 			counter_right +=1
 			walkthrough_right(field,i,j,counter_right)
-		  else 
+		else 
 			return false
 		end
 
@@ -114,7 +114,7 @@ end
 		if field[i+(counter-1)][j+(counter-1)]	== field[i+counter][j+counter]
 			counter_right_down +=1
 			walkthrough_right_down(field,i,j,counter_right_down)
-		  else 
+		else 
 			return false
 		end
 	end
@@ -141,12 +141,9 @@ end
 			counter_left_down +=1
 			walkthrough_left_down(field,i,j,counter_right_down)
 		  else 
-			return false
+		 false
 		end
 
 	end
-
-
-
 
 end
