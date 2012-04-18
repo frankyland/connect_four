@@ -4,7 +4,7 @@ require 'player'
 class GameField
 
 	def initialize()
-		
+		@logic_object = Logic.new
 		@player_x = Player.new(:x)
 		@player_o = Player.new(:o)
 	end
@@ -95,7 +95,10 @@ class GameField
 			    i +=1
 		    end
 		  end 
-
+      @logic_object.walkthrough(
+      
+      
+      
 	  end		
   end
   

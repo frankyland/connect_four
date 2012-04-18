@@ -30,13 +30,13 @@ class Logic
           print "column is full please insert in other column"
       
   			else
-			    turn_right= @game_field.add_object(Logic.new(player[who], number))
+			    turn_right=  @game_field.add_object(Logic.new(player[who], number))
 			  end
 			  counter +=1
 		  end
 		  
-		  winner = game_over(player[who], field)
-		  end_turn= !@gamefield.free_field? or ( winner != nil)
+		  winner = game_over(player[who])
+		  end_turn= !@gamefield.empty_space or ( winner != nil)
 		  break if (end_turn or !turn_right)
 		  who +=1
 		  who %2
@@ -50,7 +50,7 @@ class Logic
 	  end
   end
 
-	def game_over(player, field)
+	def game_over(player)
 		i,j =0
 		counter = 1
 		
