@@ -70,6 +70,7 @@ class GameField
 		i= 0
 
     while i< 8 do 
+      # Printing each field from the row
               
 	  	print @field[i][column]
       print " | " unless column ==8
@@ -97,5 +98,27 @@ class GameField
 
 	  end		
   end
-
+  
+  # This Method test, if the Game Field is empty or not
+  def empty_space(counter)
+    if counter == 64
+      return true
+    else   
+      false
+    end
+  end    
+    
+  #If the column is full the method return false, if there is stil space , true
+  #So if the column is full no element can enter there 
+  def full_column(column)
+    i=0
+    while i<8 do
+    
+      if @field[i][column] == "."
+        return true
+      else
+        false
+      end    
+      i+=1
+    end
 end

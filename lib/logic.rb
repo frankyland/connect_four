@@ -5,7 +5,7 @@ class Logic
 	  @game_field = GameField.new
   end
 	# Define a Method that 2 player playing against each other connect four
-  def two_player_game(out, on)
+  def two_player_game(on)
 	  @game_field.print(out) 
   	
 	  winner = game_over
@@ -13,7 +13,7 @@ class Logic
 	  player =@game_field.player
 
 	
-	  out.print   "Please Enter X or O for the game"
+	  print   "Please Enter X or O for the game"
 	  insert =  on.gets.downcase.chomp
 	  who = nil
 	  who = (enter == 'x') ? 1 : 0
@@ -21,14 +21,14 @@ class Logic
     while true
 		  turn_right = false
 		  until turn_right
-		  	out.print " It's #{spieler[who]} turn:" 
+		  	print " It's #{spieler[who]} turn:" 
 		  	number = on.gets.to_i
         if number == 0
   				break
   			end
 			  turn_right= @game_field.add_object(Logic.new(player[who], number))
 		  end
-		  @game_field.print( out)
+		  @game_field.print
 		  winner = game_over(player[who], field)
 		  end_turn= !@gamefield.free_field? or ( winner != nil)
 		  break if (end_turn or !turn_right)
@@ -141,7 +141,7 @@ class Logic
 			counter_left_down +=1
 			walkthrough_left_down(field,i,j,counter_right_down)
 		  else 
-		 false
+		 return false
 		end
 
 	end
