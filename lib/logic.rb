@@ -21,20 +21,20 @@ class Logic
     while true
 		  turn_right = false
 		  until turn_right
-		     if  game_field.empty_field == false
+		    if  game_field.empty_space(counter) == false
 		      break
-		     end
+		    end
 		  	print " It's #{spieler[who]} turn:" 
 		  	number = on.gets.to_i
-        
-       
-        
-        
-  			end
-			  turn_right= @game_field.add_object(Logic.new(player[who], number))
-			   counter +=1
+        if game_field.full_column == true
+          print "column is full please insert in other column"
+      
+  			else
+			    turn_right= @game_field.add_object(Logic.new(player[who], number))
+			  end
+			  counter +=1
 		  end
-		  @game_field.print
+		  
 		  winner = game_over(player[who], field)
 		  end_turn= !@gamefield.free_field? or ( winner != nil)
 		  break if (end_turn or !turn_right)
