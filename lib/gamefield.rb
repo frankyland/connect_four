@@ -120,5 +120,5 @@ class GameField
         false
       end    
       i+=1
-    end
+   end
 end

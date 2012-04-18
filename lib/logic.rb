@@ -6,8 +6,8 @@ class Logic
   end
 	# Define a Method that 2 player playing against each other connect four
   def two_player_game(on)
-	  @game_field.print(out) 
-  	
+	   
+  	counter=0
 	  winner = game_over
 	  end_turn= !@gamefield.n_field? or ( winner != nil)
 	  player =@game_field.player
@@ -21,12 +21,18 @@ class Logic
     while true
 		  turn_right = false
 		  until turn_right
+		     if  game_field.empty_field == false
+		      break
+		     end
 		  	print " It's #{spieler[who]} turn:" 
 		  	number = on.gets.to_i
-        if number == 0
-  				break
+        
+       
+        
+        
   			end
 			  turn_right= @game_field.add_object(Logic.new(player[who], number))
+			   counter +=1
 		  end
 		  @game_field.print
 		  winner = game_over(player[who], field)
