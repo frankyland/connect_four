@@ -149,6 +149,7 @@ class GameField
 		  	end
 		  end
   
+      #If one of them is true, there is a win chance
 		  if right== true or right_down==true or down == true or left_down == true
 		  	return true
 		  else 
@@ -156,7 +157,7 @@ class GameField
 		  end
 	  end
 	end
-
+  # Rekursiv function to walk through the array and find a win situation
 	def walkthrough_right( i, j, counter_right)
 		if counter_right == 4
 			return true
@@ -170,7 +171,7 @@ class GameField
 		end
 
 	end
-
+  # Rekursiv function to walk through the array and find a win situation
 	def walkthrough_right_down( i, j, counter_right_down)
 		if counter_right_down == 4
 			return true
@@ -184,6 +185,7 @@ class GameField
 		end
 	end
 
+  # Rekursiv function to walk through the array and find a win situation
 	def walkthrough_down( i, j, counter_down)
 		if counter_down == 4
 			return true
@@ -197,6 +199,7 @@ class GameField
 		end
 	end
 	
+  # Rekursiv function to walk through the array and find a win situation
 	def walkthrough_left_down( i, j, counter_left_down)
 		if counter_left_down == 4
 			return true
