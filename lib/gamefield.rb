@@ -124,36 +124,37 @@ class GameField
       end    
       i+=1
    end
-   
-   def walkthrough( i, j)
+   # This Method walks through the 2 dimensional Array to check if there is  a Line with
+   def walkthrough(i, j)
 		counter_right, counter_right_down, counter_down, counter_left_down = 0
 		right, left_down, down, right_down= false
-		if @field[i][j+(counter-1)] == @field[i][j+counter]
-			counter_right +=1
-			right = walkthrough_right(i,j,counter)
-		end
-		if @field[i+(counter-1)][j+(counter-1)]	== @field[i+counter][j+counter]
-			counter_right_down +=1
-			right_down = walkthrough_right_down(i,j,counter)
-		end
-		if @field[i+(counter-1)][j]	== @field[i+counter][j]
-			counter_down +=1
-			down = walkthrough_down(i,j,counter)
-		end
-
-		if i and j > 0
-			if @field[i+(counter-1)][j]	== @field[i+counter][j]
-				counter_left_down +=1
-				left_down = walkthrough_left_down(i,j,counter_left_down)
-			end
-		end
-
-		if right== true or right_down==true or down == true or left_down == true
-			return true
-		else 
-			return false
-		end
-	
+	  if @field[i][j] != "."  
+		  if @field[i][j+(counter-1)] == @field[i][j+counter]
+		  	counter_right +=1
+		  	right = walkthrough_right(i,j,counter)
+		  end
+		  if @field[i+(counter-1)][j+(counter-1)]	== @field[i+counter][j+counter]
+		  	counter_right_down +=1
+		  	right_down = walkthrough_right_down(i,j,counter)
+		  end
+		  if @field[i+(counter-1)][j]	== @field[i+counter][j]
+		  	counter_down +=1
+		  	down = walkthrough_down(i,j,counter)
+		  end
+  
+		  if i and j > 0
+		  	if @field[i+(counter-1)][j]	== @field[i+counter][j]
+		  		counter_left_down +=1
+		  		left_down = walkthrough_left_down(i,j,counter_left_down)
+		  	end
+		  end
+  
+		  if right== true or right_down==true or down == true or left_down == true
+		  	return true
+		  else 
+		  	return false
+		  end
+	  end
 	end
 
 	def walkthrough_right( i, j, counter_right)
