@@ -1,16 +1,13 @@
 require 'gamefield'
 class Logic
   game_field = GameField.new
-  def initialize
-	  #Initialize a gamefield object to the class
-	  
-  end
+  
 	# Define a Method that 2 player playing against each other connect four
   def two_player_game(on)
 	   
   	counter=0
-	  winner = game_over
-	  end_turn= !gamefield.n_field? or ( winner != nil)
+	  winner = false
+	#  end_turn= !gamefield.n_field? or ( winner != nil)
 	  player =game_field.player
 
 	
@@ -51,7 +48,8 @@ class Logic
 	  end
   end
 
-	def game_over(player)
+  # Going through every field if the game is over and with that a winner is set
+	def game_over()
 		i,j =0
 		counter = 1
 		
