@@ -1,16 +1,17 @@
 require 'gamefield'
 class Logic
+  game_field = GameField.new
   def initialize
 	  #Initialize a gamefield object to the class
-	  @game_field = GameField.new
+	  
   end
 	# Define a Method that 2 player playing against each other connect four
   def two_player_game(on)
 	   
   	counter=0
 	  winner = game_over
-	  end_turn= !@gamefield.n_field? or ( winner != nil)
-	  player =@game_field.player
+	  end_turn= !gamefield.n_field? or ( winner != nil)
+	  player =game_field.player
 
 	
 	  print   "Please Enter X or O for the game"
@@ -30,13 +31,13 @@ class Logic
           print "column is full please insert in other column"
       
   			else
-			    turn_right=  @game_field.add_object(Logic.new(player[who], number))
+			    turn_right=  game_field.add_object(Logic.new(player[who], number))
 			  end
 			  counter +=1
 		  end
 		  
 		  winner = game_over(player[who])
-		  end_turn= !@gamefield.empty_space or ( winner != nil)
+		  end_turn= !gamefield.empty_space or ( winner != nil)
 		  break if (end_turn or !turn_right)
 		  who +=1
 		  who %2
@@ -58,10 +59,12 @@ class Logic
 			
 			j =0
 		  while j<8
-				if field[i][j] == object
-					the_winner = walktrough(field,i,j)
-				end
+			  the_winner = game_field.walktrough(i,j)
+				j+=1
+			
+				
 			end
+			i+=1
 		end
 		return the_winner
 	end
