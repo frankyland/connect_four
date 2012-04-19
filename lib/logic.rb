@@ -22,7 +22,7 @@ class Logic
 		    if  game_field.empty_space(counter) == false
 		      break
 		    end
-		  	print " It's #{spieler[who]} turn:" 
+		  	print " It's #{player[who]} turn:" 
 		  	number = on.gets.to_i
         if game_field.full_column == true
           print "column is full please insert in other column"
@@ -49,22 +49,24 @@ class Logic
   end
 
   # Going through every field if the game is over and with that a winner is set
-	def game_over()
+	def game_over(player[who])
 		i,j =0
 		counter = 1
-		
+		win = false
 		while i < 8 
 			
 			j =0
 		  while j<8
-			  the_winner = game_field.walktrough(i,j)
+			  win = game_field.walktrough(i,j)
+			  if win == true
+			    return player[who]
+		    end    
 				j+=1
-			
-				
 			end
+			
 			i+=1
 		end
-		return the_winner
+		
 	end
 		
 end
