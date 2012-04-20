@@ -4,7 +4,7 @@ require 'player'
 class GameField
 
 	def initialize()
-		@logic_object = Logic.new
+		
 		@player_x = Player.new(:x)
 		@player_o = Player.new(:o)
 	end
@@ -32,7 +32,7 @@ class GameField
 		while i < 8 do
 			j=0
 			
-			while j < 8 do
+			while j < 9 do
 	  			field[i][j] ="."
 				 j+=1	
 					
@@ -52,14 +52,14 @@ class GameField
     while i < 9 do
 	    print_row( i)
 
-  		out.puts " |" 
-		  out.puts  "|---|---|---|---|---|---|---|---|" 
-	  	out.print "| " 
+  		puts " |" 
+		  puts  "|---|---|---|---|---|---|---|---|" 
+	  	print "| " 
       i+=1
     end
 
   
-	puts "\\----------------------------------/" 
+
 
 	    	
 	end
@@ -83,22 +83,20 @@ class GameField
   
   #Add an Object in the current 2 dimensional Array
   # Primary the column is important since the Method walks the Column down till an Element is found
-  def add_object( column, object)
+  def add_object( player, object)
          i=0
-	  if @field[i][column] == '.'
+	  if @field[i][column] =='.'
 		  while i<8 do
 		  # this loop exist to step the column down till there is an Element. 
     # Is an Element found then the new Element will be INstern before the existing
 	      if @field[i+1][column] != '.'
-			    @field[i][column] = object
+			    @field[i][column] = player[i]
 			  break
 			    i +=1
 		    end
 		  end 
-      @logic_object.walkthrough(
       
-      
-      
+       
 	  end		
   end
   
@@ -123,7 +121,9 @@ class GameField
         false
       end    
       i+=1
-   end
+    end
+  end 
+
    # This Method walks through the 2 dimensional Array to check if there is  a Line with
    def walkthrough(i, j)
 		counter_right, counter_right_down, counter_down, counter_left_down = 0
@@ -215,3 +215,4 @@ class GameField
 	end
 
 end
+

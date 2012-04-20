@@ -1,9 +1,11 @@
 require 'gamefield'
 class Logic
-  game_field = GameField.new
   
+  def initialize()
+		@game_field = GameField.new
+	end
 	# Define a Method that 2 player playing against each other connect four
-  def two_player_game(on)
+  def two_player_game()
 	   
   	counter=0
 	  winner = false
@@ -28,12 +30,12 @@ class Logic
           print "column is full please insert in other column"
       
   			else
-			    turn_right=  game_field.add_object(Logic.new(player[who], number))
+			  #  turn_right=  game_field.add_object(player, number)
 			  end
 			  counter +=1
 		  end
 		  
-		  winner = game_over(player[who])
+		  winner = game_over(player)
 		  end_turn= !gamefield.empty_space or ( winner != nil)
 		  break if (end_turn or !turn_right)
 		  who +=1
@@ -49,7 +51,7 @@ class Logic
   end
 
   # Going through every field if the game is over and with that a winner is set
-	def game_over(player[who])
+	def game_over(player)
 		i,j =0
 		counter = 1
 		win = false
@@ -66,8 +68,7 @@ class Logic
 			
 			i+=1
 		end
-		
-	end
+		return nil
+	end  	
 		
 end
-	
