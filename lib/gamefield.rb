@@ -10,7 +10,7 @@ class GameField
 	end
  
 	def player 
-		[player_x, player_o]
+		[@player_x, @player_o]
 	end 
 	
 	# The Method create a 2 dimensional Array for the Information needed for for every turn.
@@ -83,14 +83,14 @@ class GameField
   
   #Add an Object in the current 2 dimensional Array
   # Primary the column is important since the Method walks the Column down till an Element is found
-  def add_object( player, object)
-         i=0
-	  if @field[i][column] =='.'
-		  while i<8 do
-		  # this loop exist to step the column down till there is an Element. 
-    # Is an Element found then the new Element will be INstern before the existing
-	      if @field[i+1][column] != '.'
-			    @field[i][column] = player[i]
+  def add_object(player, object)
+    i=1
+	  if @field[i][object]== "."
+		  while i<9 do
+		   #this loop exist to step the column down till there is an Element. 
+       #Is an Element found then the new Element will be INstern before the existing
+	      if @field[i+1][object] != '.'
+			     @field[i][column] = 'X'
 			  break
 			    i +=1
 		    end
@@ -125,10 +125,10 @@ class GameField
   end 
 
    # This Method walks through the 2 dimensional Array to check if there is  a Line with
-   def walkthrough(i, j)
+  def walkthrough(i, j)
 		counter_right, counter_right_down, counter_down, counter_left_down = 0
 		right, left_down, down, right_down= false
-	  if @field[i][j] != "."  
+	  if @field[i][j] != '.'  
 		  if @field[i][j+(counter-1)] == @field[i][j+counter]
 		  	counter_right +=1
 		  	right = walkthrough_right(i,j,counter)

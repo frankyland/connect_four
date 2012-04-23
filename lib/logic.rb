@@ -5,39 +5,36 @@ class Logic
 		@game_field = GameField.new
 	end
 	# Define a Method that 2 player playing against each other connect four
-  def two_player_game()
+  def two_player_game(input)
 	   
   	counter=0
 	  winner = false
 	#  end_turn= !gamefield.n_field? or ( winner != nil)
-	  player =game_field.player
+	  players =@game_field.player
 
-	
-	  print   "Please Enter X or O for the game"
-	  insert =  on.gets.downcase.chomp
-	  who = nil
-	  who = (enter == 'x') ? 1 : 0
+	  who = 0
+	 # who = (enter == 'x') ? 1 : 0
 
     while true
 		  turn_right = false
 		  until turn_right
-		    if  game_field.empty_space(counter) == false
-		      break
-		    end
-		  	print " It's #{player[who]} turn:" 
-		  	number = on.gets.to_i
-        if game_field.full_column == true
-          print "column is full please insert in other column"
+		  #  if  @game_field.empty_space(counter) == false
+		   #   break
+		   # end
+		  	print " It's #{@game_field.player[who]} turn:" 
+		  	number = input.gets.to_i
+        #if @game_field.full_column == true
+         # print "column is full please insert in other column"
       
-  			else
-			  #  turn_right=  game_field.add_object(player, number)
-			  end
+  			#else
+			   turn_right=  @game_field.add_object(@game_field.player, number)
+			  #end
 			  counter +=1
 		  end
 		  
-		  winner = game_over(player)
-		  end_turn= !gamefield.empty_space or ( winner != nil)
-		  break if (end_turn or !turn_right)
+		  winner = game_over(players)
+	#	  end_turn= !@gamefield.empty_space(counter) or ( winner != nil)
+	#	  break if (end_turn or !turn_right)
 		  who +=1
 		  who %2
 
@@ -51,7 +48,7 @@ class Logic
   end
 
   # Going through every field if the game is over and with that a winner is set
-	def game_over(player)
+	def game_over(players)
 		i,j =0
 		counter = 1
 		win = false
@@ -59,7 +56,7 @@ class Logic
 			
 			j =0
 		  while j<8
-			  win = game_field.walktrough(i,j)
+			 # win = @game_field.walkthrough(i,j)
 			  if win == true
 			    return player[who]
 		    end    
