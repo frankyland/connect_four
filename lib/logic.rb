@@ -23,6 +23,8 @@ class Logic
 		   # end
 		  	print " It's #{@game_field.player[who]} turn:" 
 		  	number = input.gets.to_i
+		  	
+		  	print number
         #if @game_field.full_column == true
          # print "column is full please insert in other column"
       
@@ -56,7 +58,7 @@ class Logic
 			
 			j =0
 		  while j<8
-			 # win = @game_field.walkthrough(i,j)
+			 # win = @game_field.walkthrough(i,j, object)
 			  if win == true
 			    return player[who]
 		    end    
