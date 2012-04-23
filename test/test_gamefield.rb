@@ -7,9 +7,10 @@ a = [['.','.','.','.','.','.','.','.'],['.','.','.','.','.','.','.','.'],['.','.
 	def Test_create_gamefield
 		test_field = GameField.new
 		test_field.create_gamefield_array(a)
-		test_field.print_game_field(STDOUT, a)
+		test_field.print_game_field(a)
 
-			#assert_nil(CreateField.new)			
+    
+			assert_not_nil(test_field.walkthrough(1,1))			
 	end
 
 end

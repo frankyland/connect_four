@@ -11,5 +11,5 @@ module ConnectFour
 	gamefield = start.create_gamefield_array(field)
 	start.print_game_field()	
 	game.two_player_game(STDIN)	
-	
+#	start.walktrough(2,3)
 end

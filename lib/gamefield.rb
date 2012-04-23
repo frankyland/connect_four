@@ -79,25 +79,31 @@ class GameField
 		end
   end
 
-      
+
   
   #Add an Object in the current 2 dimensional Array
   # Primary the column is important since the Method walks the Column down till an Element is found
   def add_object(player, object)
-    i=1
-	  if @field[i][object]== "."
-		  while i<9 do
-		   #this loop exist to step the column down till there is an Element. 
-       #Is an Element found then the new Element will be INstern before the existing
-	      if @field[i+1][object] != '.'
-			     @field[i][column] = 'X'
+    found = true
+    i=0
+	#  if @field[1][object]== '.'
+		  while i< 5 do
+		  # this loop exist to step the column down till there is an Element. 
+     #  Is an Element found then the new Element will be INstern before the existing
+           a= @field[i][object] 
+	      if a != '.'
+			     @field[i-1][object] = "X"
 			  break
-			    i +=1
+			  if i==4
+			      @field [4][object] ="X"
+			  end  
+	  
 		    end
+		    i +=1
 		  end 
       
-       
-	  end		
+       true
+	 # end		
   end
   
   # This Method test, if the Game Field is empty or not
