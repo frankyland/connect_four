@@ -5,6 +5,12 @@ class Logic
 		@game_field = GameField.new
 	end
 	
+	
+	def player 
+		["X", "O"]
+	end 
+	
+	
 	def act_player
 	  ["x","o"]
 	end
@@ -14,18 +20,18 @@ class Logic
   	counter=0
 	  winner = false
 	#  end_turn= !gamefield.n_field? or ( winner != nil)
-	  players =@game_field.player.to_s
+	 
 
 	  who = 0
 	 
 
     while true
-		  turn_right = false
-		  until turn_right
+		#  turn_right = false
+		 
 		  #  if  @game_field.empty_space(counter) == false
 		   #   break
 		   # end
-		  	print " It's #{players[who]} turn:" 
+		  	print " It's #{player[who]} turn:" 
 		  	number = input.gets.to_i
 		  	
 		  	
@@ -34,13 +40,13 @@ class Logic
       
   			#else
   		
-			   turn_right=  @game_field.add_object(who, number)
+			   @game_field.add_object(who, number)
 			   @game_field.print_game_field
 			  #end
 			  counter +=1
-		  end
+		 # end
 		  
-		  winner = game_over(players)
+		  winner = game_over(player)
 	#	  end_turn= !@gamefield.empty_space(counter) or ( winner != nil)
 	#	  break if (end_turn or !turn_right)
 		  who +=1
@@ -56,7 +62,7 @@ class Logic
   end
 
   # Going through every field if the game is over and with that a winner is set
-	def game_over(players)
+	def game_over(player)
 		i,j =0
 		counter = 1
 		win = false

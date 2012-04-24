@@ -6,14 +6,10 @@ class GameField
 
 	def initialize()
 		@nha = SparseArray.new
-		@player_x = Player.new(:x)
-		@player_o = Player.new(:o)
+#		@player_x = Player.new(:x)
+	#	@player_o = Player.new(:o)
 	end
  
-	def player 
-		[@player_x, @player_o]
-	end 
-	
 	# The Method create a 2 dimensional Array for the Information needed for for every turn.
   def  arrays(rows,cols) 
     a= Array.new(rows)
@@ -26,7 +22,7 @@ class GameField
 	# The Method returns the Gamefield
 	def create_gamefield_array
 	
-	 @nha = arrays(8,8)
+	# @nha = arrays(8,8)
 			
 		i=0
 
@@ -109,9 +105,9 @@ class GameField
     found = true
     i=0
     number = object.to_i
-	#  if @nha[1][object]== '.'
+	    rekursiv_down(i, object, player)
 		 
-       true
+       found
 	 # end		
   end
   
