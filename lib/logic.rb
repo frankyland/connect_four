@@ -4,16 +4,20 @@ class Logic
   def initialize()
 		@game_field = GameField.new
 	end
+	
+	def act_player
+	  ["x","o"]
+	end
 	# Define a Method that 2 player playing against each other connect four
   def two_player_game(input)
 	   
   	counter=0
 	  winner = false
 	#  end_turn= !gamefield.n_field? or ( winner != nil)
-	  players =@game_field.player
+	  players =@game_field.player.to_s
 
 	  who = 0
-	 # who = (enter == 'x') ? 1 : 0
+	 
 
     while true
 		  turn_right = false
@@ -21,15 +25,17 @@ class Logic
 		  #  if  @game_field.empty_space(counter) == false
 		   #   break
 		   # end
-		  	print " It's #{@game_field.player[who]} turn:" 
+		  	print " It's #{players[who]} turn:" 
 		  	number = input.gets.to_i
 		  	
-		  	print number
+		  	
         #if @game_field.full_column == true
          # print "column is full please insert in other column"
       
   			#else
-			   turn_right=  @game_field.add_object(@game_field.player, number)
+  		
+			   turn_right=  @game_field.add_object(who, number)
+			   @game_field.print_game_field
 			  #end
 			  counter +=1
 		  end

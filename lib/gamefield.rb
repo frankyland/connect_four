@@ -1,10 +1,11 @@
+require 'nestedhasharray'
 require 'logic'
 require 'player'
 
 class GameField
 
 	def initialize()
-		
+		@nha = SparseArray.new
 		@player_x = Player.new(:x)
 		@player_o = Player.new(:o)
 	end
@@ -23,9 +24,9 @@ class GameField
 	# "create_gamefield_array" defined a 2 dimensional Array and fill it with a Symbol to
         # define "nil" on the gamefield.
 	# The Method returns the Gamefield
-	def create_gamefield_array(field)
+	def create_gamefield_array
 	
-	
+	 @nha = arrays(8,8)
 			
 		i=0
 
@@ -33,7 +34,7 @@ class GameField
 			j=0
 			
 			while j < 9 do
-	  			field[i][j] ="."
+	  			@nha[i][j] ="."
 				 j+=1	
 					
 			end
@@ -41,7 +42,7 @@ class GameField
 		end
 		
 		
-		@field = field
+		@nha 
 	end
 	# Print the field in his current state with all changes which appeared during the game
 	def print_game_field()
@@ -72,38 +73,44 @@ class GameField
     while i< 8 do 
       # Printing each field from the row
               
-	  	print @field[i][column]
+	  	print @nha[i][row]
       print " | " unless column ==8
       column += 1
 	  	i+=1
 		end
   end
 
-
+  def change()
+    @nha[4][3] = "X"
+    @nha[5][3] = "X"
   
+  end
+  
+   def rekursiv_down(i, number, who)
+    if i==6 
+      @nha[i][number] = @logic.act_player[who]
+      return true
+    end
+    if @nha[i][number] == "."
+       rekursiv_down(i+1, object, who)
+    end
+    if i==0 and @nha[i][number] != "."
+      return false
+    end
+    if @nha[i][number] != "."
+      @nha[i][number] = @logic.act_player[who]
+      return true
+    end
+    
+  end
   #Add an Object in the current 2 dimensional Array
   # Primary the column is important since the Method walks the Column down till an Element is found
   def add_object(player, object)
     found = true
     i=0
     number = object.to_i
-	#  if @field[1][object]== '.'
-		  while i< 8 do
-		  # this loop exist to step the column down till there is an Element. 
-     #  Is an Element found then the new Element will be INstern before the existing
-            
-	      if @field[i][number] != '.'
-			     @field[i-1][number] = "X"
-			  break
-			  end
-			  if i==4
-			      @field [4][number] ="X"
-			  end  
-	  
-		   
-		    i +=1
-		  end 
-      
+	#  if @nha[1][object]== '.'
+		 
        true
 	 # end		
   end
@@ -123,7 +130,7 @@ class GameField
     i=0
     while i<8 do
     
-      if @field[i][column] == "."
+      if @nha[i][column] == "."
         return true
       else
         false
@@ -136,22 +143,22 @@ class GameField
   def walkthrough(i, j, object)
 		counter_right, counter_right_down, counter_down, counter_left_down = 0
 		right, left_down, down, right_down= false
-	  if @field[i][j] != '.'  
-		  if @field[i][j+(counter-1)] == object
+	  if @nha[i][j] != '.'  
+		  if @nha[i][j+(counter-1)] == object
 		  	
 		  	right = walkthrough_right(i,j,counter)
 		  end
-		  if @field[i+(counter-1)][j+(counter-1)]	== @field[i+counter][j+counter]
+		  if @nha[i+(counter-1)][j+(counter-1)]	== @nha[i+counter][j+counter]
 		  	
 		  	right_down = walkthrough_right_down(i,j,counter)
 		  end
-		  if @field[i+(counter-1)][j]	== object
+		  if @nha[i+(counter-1)][j]	== object
 		  	c
 		  	down = walkthrough_down(i,j,counter)
 		  end
   
 		  if i and j > 0
-		  	if @field[i+(counter-1)][j]	== object
+		  	if @nha[i+(counter-1)][j]	== object
 		  		
 		  		left_down = walkthrough_left_down(i,j,counter_left_down)
 		  	end
@@ -171,7 +178,7 @@ class GameField
 			return true
 		end
 		
-		if @field[i][j+(counter-1)] == @field[i][j+counter]
+		if @nha[i][j+(counter-1)] == @nha[i][j+counter]
 			counter_right +=1
 			walkthrough_right(i,j,counter_right)
 		else 
@@ -185,7 +192,7 @@ class GameField
 			return true
 		end
 
-		if @field[i+(counter-1)][j+(counter-1)]	== @field[i+counter][j+counter]
+		if @nha[i+(counter-1)][j+(counter-1)]	== @nha[i+counter][j+counter]
 			counter_right_down +=1
 			walkthrough_right_down(i,j,counter_right_down)
 		else 
@@ -199,7 +206,7 @@ class GameField
 			return true
 		end
 	    
-		if @field[i+(counter-1)][j] == @field[i+counter][j]
+		if @nha[i+(counter-1)][j] == @nha[i+counter][j]
 			counter_down +=1
 			walkthrough_down(i,j,counter_down)
 		  else 
@@ -213,7 +220,7 @@ class GameField
 			return true
 		end
 
-		if @field[i-(counter-1)][j-(counter-1)]	== @field[i-counter][j-counter]
+		if @nha[i-(counter-1)][j-(counter-1)]	== @nha[i-counter][j-counter]
 			counter_left_down +=1
 			walkthrough_left_down(i,j,counter_right_down)
 		  else 
