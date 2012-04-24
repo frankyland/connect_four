@@ -5,6 +5,7 @@ require 'player'
 class GameField
 
 	def initialize()
+    @one= @two= @three=@four=@five=@six=@seven=@eight=8	  
 		@nha = SparseArray.new
 #		@player_x = Player.new(:x)
 	#	@player_o = Player.new(:o)
@@ -82,34 +83,100 @@ class GameField
   
   end
   
-   def rekursiv_down(i, number, who)
-    if i==6 
-      @nha[i][number] = @logic.act_player[who]
-      return true
-    end
-    if @nha[i][number] == "."
-       rekursiv_down(i+1, object, who)
-    end
-    if i==0 and @nha[i][number] != "."
-      return false
-    end
-    if @nha[i][number] != "."
-      @nha[i][number] = @logic.act_player[who]
-      return true
-    end
+  def change2()
+    @nha[1][3] = "O"
+    @nha[3][3] = "O"
+  
+  end
+  
+
     
-  end
-  #Add an Object in the current 2 dimensional Array
+    
+  
+  
+    #Add an Object in the current 2 dimensional Array
   # Primary the column is important since the Method walks the Column down till an Element is found
-  def add_object(player, object)
-    found = true
-    i=0
-    number = object.to_i
-	    rekursiv_down(i, object, player)
-		 
-       found
-	 # end		
+  def add_object(who, number)
+    
+    
+    case number
+      when 1
+        if @one != 0
+          insert(number, @one, who)
+          @one= @one -1
+        
+        else 
+          puts "Please choose another column"
+        end
+        
+      when 2
+        if @two != 0
+          insert(number, @two, who)
+          @two= @two-1
+        else
+          puts "Please choose another column"
+        end
+        
+      when 3
+        if @three != 0
+          insert(number, @three, who)
+          @three=@three -1
+        else
+          puts "Please choose another column"
+        end
+        
+      when 4
+        if @four != 0
+          insert(number, @four, who)
+          @four=@four-1
+        else
+          puts "Please choose another column"
+        end
+        
+        
+      when 5
+        if @five != 0
+          insert(number, @five, who)
+          @five=@five-1
+        else
+          puts "Please choose another column"
+        end
+        
+      when 6
+        if @six != 0
+          insert(number, @six, who)
+          @six=@six-1
+        else
+          puts "Please choose another column"
+        end
+        
+      when 7
+        if @seven != 0
+          insert(number, @seven, who)
+          @seven=@seven-1
+        else
+          puts "Please choose another column"
+        end
+        
+      when 8
+        if @eight != 0
+          insert(number, @eight, who)
+          @eight=@eight-1
+        else
+          puts "Please choose another column"
+        end
+        
+      else print "no such number"
+    end
   end
+  def act_player
+	  ["x","o"]
+	end
+  def insert(number, counter, who)
+    
+    @nha[number][counter] = act_player[who]
+    puts "who"
+  end 
   
   # This Method test, if the Game Field is empty or not
   def empty_space(counter)
@@ -139,7 +206,7 @@ class GameField
   def walkthrough(i, j, object)
 		counter_right, counter_right_down, counter_down, counter_left_down = 0
 		right, left_down, down, right_down= false
-	  if @nha[i][j] != '.'  
+	  if @nha[i][j] != "a"  
 		  if @nha[i][j+(counter-1)] == object
 		  	
 		  	right = walkthrough_right(i,j,counter)

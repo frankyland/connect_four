@@ -11,9 +11,7 @@ class Logic
 	end 
 	
 	
-	def act_player
-	  ["x","o"]
-	end
+	
 	# Define a Method that 2 player playing against each other connect four
   def two_player_game(input)
 	   
@@ -21,17 +19,22 @@ class Logic
 	  winner = false
 	#  end_turn= !gamefield.n_field? or ( winner != nil)
 	 
-
+    actual_player = nil
 	  who = 0
 	 
 
     while true
 		#  turn_right = false
-		 
+		    if who ==0
+		      actual_player = "X"
+		    end
+		    if who == 1
+		      actual_player ="O"
+		    end    
 		  #  if  @game_field.empty_space(counter) == false
 		   #   break
 		   # end
-		  	print " It's #{player[who]} turn:" 
+		  	print " It's #{actual_player} turn:" 
 		  	number = input.gets.to_i
 		  	
 		  	
@@ -41,12 +44,13 @@ class Logic
   			#else
   		
 			   @game_field.add_object(who, number)
-			   @game_field.print_game_field
+			   #@game_field.print_game_field
 			  #end
-			  counter +=1
+			  @game_field.print_game_field
+			  #counter +=1
 		 # end
 		  
-		  winner = game_over(player)
+		  #winner = game_over(player)
 	#	  end_turn= !@gamefield.empty_space(counter) or ( winner != nil)
 	#	  break if (end_turn or !turn_right)
 		  who +=1
