@@ -7,6 +7,7 @@ class GameField
 	def initialize()
     @one= @two= @three=@four=@five=@six=@seven=@eight=8	  
 		@nha = SparseArray.new
+		@nha2 = SparseArray.new
 #		@player_x = Player.new(:x)
 	#	@player_o = Player.new(:o)
 	end
@@ -27,35 +28,50 @@ class GameField
 			
 		i=0
 
-		while i < 8 do
+		while i < 8  do
 			j=0
 			
 			while j < 9 do
 	  			@nha[i][j] ="."
+				#  @nha2[i][j]="."
 				 j+=1	
 					
 			end
 			i+=1
 		end
+	end	
+	def fuse
+		i,j=0
+		while i<8 do  
+		  j=0
+		  while j<9 do
+		    
+		    #if( @nha[i][j] !="x")or (@nha[i][j] !="o")
+		   #   @nha[i][j] ="."   
+		  #  end
+		    if @nha[i][j] == nil
+		      @nha[i][j] ="."   
+		    end
+		    j+=1
+		  end  
+		  i+=1
+		end  
 		
-		
-		@nha 
 	end
 	# Print the field in his current state with all changes which appeared during the game
 	def print_game_field()
     i=1
 
-  	puts  "/--------------------------------\\" 
-    print "| " 
+ 
+    
     while i < 9 do
+	   print "|"
 	    print_row( i)
-
-  		puts " |" 
-		  puts  "|---|---|---|---|---|---|---|---|" 
-	  	print "| " 
       i+=1
+      puts "|"
     end
-
+    puts "--------"
+    puts "12345678"
   
 
 
@@ -71,30 +87,14 @@ class GameField
       # Printing each field from the row
               
 	  	print @nha[i][row]
-      print " | " unless column ==8
-      column += 1
+      
+      
 	  	i+=1
 		end
   end
-
-  def change()
-    @nha[4][3] = "X"
-    @nha[5][3] = "X"
-  
-  end
-  
-  def change2()
-    @nha[1][3] = "O"
-    @nha[3][3] = "O"
-  
-  end
-  
-
-    
-    
   
   
-    #Add an Object in the current 2 dimensional Array
+  #Add an Object in the current 2 dimensional Array
   # Primary the column is important since the Method walks the Column down till an Element is found
   def add_object(who, number)
     
@@ -168,14 +168,15 @@ class GameField
         
       else print "no such number"
     end
+    fuse()
   end
   def act_player
 	  ["x","o"]
 	end
   def insert(number, counter, who)
     
-    @nha[number][counter] = act_player[who]
-    puts "who"
+    @nha[number-1][counter] = act_player[who]
+    
   end 
   
   # This Method test, if the Game Field is empty or not

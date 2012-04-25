@@ -19,22 +19,17 @@ class Logic
 	  winner = false
 	#  end_turn= !gamefield.n_field? or ( winner != nil)
 	 
-    actual_player = nil
+
 	  who = 0
 	 
 
     while true
 		#  turn_right = false
-		    if who ==0
-		      actual_player = "X"
-		    end
-		    if who == 1
-		      actual_player ="O"
-		    end    
+		    
 		  #  if  @game_field.empty_space(counter) == false
 		   #   break
 		   # end
-		  	print " It's #{actual_player} turn:" 
+		  	print " It's #{player[who]} turn:" 
 		  	number = input.gets.to_i
 		  	
 		  	
@@ -42,8 +37,13 @@ class Logic
          # print "column is full please insert in other column"
       
   			#else
-  		
+  		    
 			   @game_field.add_object(who, number)
+			   if who ==1
+			     who =0
+			   else
+			    who+=1
+			   end   
 			   #@game_field.print_game_field
 			  #end
 			  @game_field.print_game_field
@@ -53,8 +53,7 @@ class Logic
 		  #winner = game_over(player)
 	#	  end_turn= !@gamefield.empty_space(counter) or ( winner != nil)
 	#	  break if (end_turn or !turn_right)
-		  who +=1
-		  who %2
+		  
 
     end 
 	
