@@ -207,31 +207,36 @@ class GameField
 		right, left_down, down, right_down= false
 	  if @nha[i][j] != "."  
 		  if @nha[i][j] == object
-		    if @nha[i][j+1] == object
-		  	  counter_right+=1
-		  	  right = walkthrough_right(i,j,counter_right)
-		  	  if right== true 
-		  	    return true
+		    if (j+1)<9
+		      if @nha[i][j+1] == object
+		  	    counter_right= counter_right +1
+		  	    right = walkthrough_right(i,j,counter_right)
+		  	    if right== true 
+		  	      return true
+		        end
 		      end
-		    end
-		    if @nha[i+1][j+1]	== object
-		  	  counter_right_down+=1
-		  	  right_down = walkthrough_right_down(i,j,counter_right_down)
-          if right_down==true 
-		  	    return true
-		      end		    
-		    end
-		    if @nha[i+1][j]	== object
-		  	  counter_down+= 1
-		  	  down = walkthrough_down(i,j,counter_down)
-		  	  if down == true
-		  	    return true
+		    end  
+		    if ((i+1)<9) or ((j+1)<9)
+		      if @nha[i+1][j+1]	== object
+		  	    counter_right_down = counter_right_down +1
+		  	    right_down = walkthrough_right_down(i,j,counter_right_down)
+            if right_down==true 
+		  	      return true
+		        end		    
 		      end
-		    end
-  
-		    if i and j > 0
+		    end  
+		    if (i+1)<9
+		      if @nha[i+1][j]	== object
+		  	    counter_down = counter_down+1
+		  	    down = walkthrough_down(i,j,counter_down)
+		  	    if down == true
+		  	      return true
+		        end
+		      end
+        end
+		    if (i+1) < 9 and (j-1) > 0
 		  	  if @nha[i+1][j-1]	== object
-		  		  counter_left_down+=1
+		  		  counter_left_down= counter_left_down+1
 		  	  	left_down = walkthrough_left_down(i,j,counter_left_down)
 		  	    if left_down == true
 		  	      return true
@@ -253,7 +258,7 @@ class GameField
 		end
 		
 		if @nha[i][j+counter_right-1] == @nha[i][j+counter_right]
-			counter_right+=1
+			counter_right= counter_right +1
 			walkthrough_right(i,j,counter_right)
 		else 
 			return false
@@ -267,7 +272,7 @@ class GameField
 		end
 
 		if @nha[i+(counter_right_down-1)][j+(counter_right_down-1)]	== @nha[i+counter_right_down][j+counter_right_down]
-			counter_right_down+=1
+			counter_right_down= counter_right +1
 			walkthrough_right_down(i,j,counter_right_down)
 		else 
 			return false
@@ -281,7 +286,7 @@ class GameField
 		end
 	    
 		if @nha[i+(counter_down-1)][j] == @nha[i+counter_down][j]
-			counter_down+=1
+			counter_down= counter_right+1
 			walkthrough_down(i,j,counter_down)
 		  else 
 			return false 
@@ -295,7 +300,7 @@ class GameField
 		end
 
 		if @nha[i-(counter_left_down-1)][j-(counter_left_down-1)]	== @nha[i+counter_left_down][j+counter_left_down]
-			counter_left_down+=1
+			counter_left_down= counter_left_down+1
 			walkthrough_left_down(i,j,counter_right_down)
 		  else 
 		 return false
