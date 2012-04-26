@@ -40,15 +40,14 @@ class GameField
 			i+=1
 		end
 	end	
+	
+	# Fuse the Array with the elements x and o with an array with points so the field has a visual brighter sightf
 	def fuse
 		i,j=0
 		while i<8 do  
 		  j=0
 		  while j<9 do
 		    
-		    #if( @nha[i][j] !="x")or (@nha[i][j] !="o")
-		   #   @nha[i][j] ="."   
-		  #  end
 		    if @nha[i][j] == nil
 		      @nha[i][j] ="."   
 		    end
@@ -70,8 +69,7 @@ class GameField
       i+=1
       puts "|"
     end
-    puts "--------"
-    puts "12345678"
+    puts "|12345678|"
   
 
 
@@ -207,33 +205,45 @@ class GameField
   def walkthrough(i, j, object)
 		counter_right, counter_right_down, counter_down, counter_left_down = 0
 		right, left_down, down, right_down= false
-	  if @nha[i][j] != "a"  
-		  if @nha[i][j+(counter-1)] == object
-		  	
-		  	right = walkthrough_right(i,j,counter)
-		  end
-		  if @nha[i+(counter-1)][j+(counter-1)]	== @nha[i+counter][j+counter]
-		  	
-		  	right_down = walkthrough_right_down(i,j,counter)
-		  end
-		  if @nha[i+(counter-1)][j]	== object
-		  	c
-		  	down = walkthrough_down(i,j,counter)
-		  end
+	  if @nha[i][j] != "."  
+		  if @nha[i][j] == object
+		    if @nha[i][j+1] == object
+		  	  counter_right+=1
+		  	  right = walkthrough_right(i,j,counter_right)
+		  	  if right== true 
+		  	    return true
+		      end
+		    end
+		    if @nha[i+1][j+1]	== object
+		  	  counter_right_down+=1
+		  	  right_down = walkthrough_right_down(i,j,counter_right_down)
+          if right_down==true 
+		  	    return true
+		      end		    
+		    end
+		    if @nha[i+1][j]	== object
+		  	  counter_down+= 1
+		  	  down = walkthrough_down(i,j,counter_down)
+		  	  if down == true
+		  	    return true
+		      end
+		    end
   
-		  if i and j > 0
-		  	if @nha[i+(counter-1)][j]	== object
-		  		
-		  		left_down = walkthrough_left_down(i,j,counter_left_down)
-		  	end
-		  end
+		    if i and j > 0
+		  	  if @nha[i+1][j-1]	== object
+		  		  counter_left_down+=1
+		  	  	left_down = walkthrough_left_down(i,j,counter_left_down)
+		  	    if left_down == true
+		  	      return true
+		        end
+		  	  end
+		    end
   
-      #If one of them is true, there is a win chance
-		  if right== true or right_down==true or down == true or left_down == true
-		  	return true
-		  else 
-		  	return false
-		  end
+        #If one of them is true, there is a win chance
+		    if right== false and right_down==false and down == false and left_down == false
+		  	  return false
+		    end
+		  end  
 	  end
 	end
   # Rekursiv function to walk through the array and find a win situation
@@ -242,8 +252,8 @@ class GameField
 			return true
 		end
 		
-		if @nha[i][j+(counter-1)] == @nha[i][j+counter]
-			counter_right +=1
+		if @nha[i][j+counter_right-1] == @nha[i][j+counter_right]
+			counter_right+=1
 			walkthrough_right(i,j,counter_right)
 		else 
 			return false
@@ -256,8 +266,8 @@ class GameField
 			return true
 		end
 
-		if @nha[i+(counter-1)][j+(counter-1)]	== @nha[i+counter][j+counter]
-			counter_right_down +=1
+		if @nha[i+(counter_right_down-1)][j+(counter_right_down-1)]	== @nha[i+counter_right_down][j+counter_right_down]
+			counter_right_down+=1
 			walkthrough_right_down(i,j,counter_right_down)
 		else 
 			return false
@@ -270,8 +280,8 @@ class GameField
 			return true
 		end
 	    
-		if @nha[i+(counter-1)][j] == @nha[i+counter][j]
-			counter_down +=1
+		if @nha[i+(counter_down-1)][j] == @nha[i+counter_down][j]
+			counter_down+=1
 			walkthrough_down(i,j,counter_down)
 		  else 
 			return false 
@@ -284,8 +294,8 @@ class GameField
 			return true
 		end
 
-		if @nha[i-(counter-1)][j-(counter-1)]	== @nha[i-counter][j-counter]
-			counter_left_down +=1
+		if @nha[i-(counter_left_down-1)][j-(counter_left_down-1)]	== @nha[i+counter_left_down][j+counter_left_down]
+			counter_left_down+=1
 			walkthrough_left_down(i,j,counter_right_down)
 		  else 
 		 return false
