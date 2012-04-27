@@ -3,6 +3,7 @@ class Logic
   
   def initialize()
 		@game_field = GameField.new
+	  
 	end
 	
 	
@@ -66,23 +67,14 @@ class Logic
 
   # Going through every field if the game is over and with that a winner is set
 	def game_over(who)
-		i,j =0
-	
 		win = false
-		while i < 8 
-			
-			j =0
-		  while j<8
-			  win = @game_field.walkthrough(i,j, @game_field.act_player[who])
+
+		  
+			  win = @game_field.walkthrough()
 			  if win == true
 			    return player[who]
-		    end    
-				j+=1
-			end
-			
-			i+=1
-		end
-		return nil
-	end  	
-		
+		    else    
+				  return nil
+      	end  	
+  end		
 end

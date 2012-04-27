@@ -5,9 +5,13 @@ require 'player'
 class GameField
 
 	def initialize()
-    @one= @two= @three=@four=@five=@six=@seven=@eight=8	  
+    @one= @two= @three=@four=@five=@six=@seven=@eight=7
+	  @x=0
+	  @counter_l = 0
+	  @counter_r=0
 		@nha = SparseArray.new
-		@nha2 = SparseArray.new
+		@turns = SparseArray.new
+    @turn = Array.new
 #		@player_x = Player.new(:x)
 	#	@player_o = Player.new(:o)
 	end
@@ -31,7 +35,7 @@ class GameField
 		while i < 8  do
 			j=0
 			
-			while j < 9 do
+			while j < 8 do
 	  			@nha[i][j] ="."
 				#  @nha2[i][j]="."
 				 j+=1	
@@ -46,7 +50,7 @@ class GameField
 		i,j=0
 		while i<8 do  
 		  j=0
-		  while j<9 do
+		  while j<8 do
 		    
 		    if @nha[i][j] == nil
 		      @nha[i][j] ="."   
@@ -59,11 +63,11 @@ class GameField
 	end
 	# Print the field in his current state with all changes which appeared during the game
 	def print_game_field()
-    i=1
+    i=0
 
  
     
-    while i < 9 do
+    while i < 8 do
 	   print "|"
 	    print_row( i)
       i+=1
@@ -95,12 +99,15 @@ class GameField
   #Add an Object in the current 2 dimensional Array
   # Primary the column is important since the Method walks the Column down till an Element is found
   def add_object(who, number)
-    
-    
+      
     case number
       when 1
-        if @one != 0
+        if @one >=0
           insert(number, @one, who)
+          @turn[0] = @one
+          @turn[1] = number
+          @turn[2] = act_player[who]
+          
           @one= @one -1
         
         else 
@@ -108,24 +115,36 @@ class GameField
         end
         
       when 2
-        if @two != 0
+        if @two >=0
           insert(number, @two, who)
+          @turn[0] = @one
+          @turn[1] = number
+          @turn[2] = act_player[who]
+          turns(@turn)
           @two= @two-1
         else
           puts "Please choose another column"
         end
         
       when 3
-        if @three != 0
+        if @three >=0
           insert(number, @three, who)
+          @turn[0] = @one
+          @turn[1] = number
+          @turn[2] = act_player[who]
+          turns(@turn)
           @three=@three -1
         else
           puts "Please choose another column"
         end
         
       when 4
-        if @four != 0
+        if @four >=0
           insert(number, @four, who)
+          @turn[0] = @one
+          @turn[1] = number
+          @turn[2] = act_player[who]
+          turns(@turn)
           @four=@four-1
         else
           puts "Please choose another column"
@@ -133,32 +152,48 @@ class GameField
         
         
       when 5
-        if @five != 0
+        if @five >=0
           insert(number, @five, who)
+          @turn[0] = @one
+          @turn[1] = number
+          @turn[2] = act_player[who]
+          turns(@turn)
           @five=@five-1
         else
           puts "Please choose another column"
         end
         
       when 6
-        if @six != 0
+        if @six >=0
           insert(number, @six, who)
+          @turn[0] = @one
+          @turn[1] = number
+          @turn[2] = act_player[who]
+          turns(@turn)
           @six=@six-1
         else
           puts "Please choose another column"
         end
         
       when 7
-        if @seven != 0
+        if @seven >=0
           insert(number, @seven, who)
+          @turn[0] = @one
+          @turn[1] = number
+          @turn[2] = act_player[who]
+          turns(@turn)
           @seven=@seven-1
         else
           puts "Please choose another column"
         end
         
       when 8
-        if @eight != 0
+        if @eight >=0
           insert(number, @eight, who)
+          @turn[0] = @one
+          @turn[1] = number
+          @turn[2] = act_player[who]
+          turns(@turn)
           @eight=@eight-1
         else
           puts "Please choose another column"
@@ -171,12 +206,25 @@ class GameField
   def act_player
 	  ["x","o"]
 	end
+ 
+ 
   def insert(number, counter, who)
     
     @nha[number-1][counter] = act_player[who]
-    
+ 
   end 
-  
+ 
+  def turns(zug)
+    i=0
+    counter=0
+    while i<3 
+      @turns[i][@x] = zug[i]
+ 
+ 
+      i+=1
+    end
+    @x+=1
+  end  
   # This Method test, if the Game Field is empty or not
   def empty_space(counter)
     if counter == 64
@@ -202,111 +250,64 @@ class GameField
   end 
 
    # This Method walks through the 2 dimensional Array to check if there is  a Line with
-  def walkthrough(i, j, object)
-		counter_right, counter_right_down, counter_down, counter_left_down = 0
-		right, left_down, down, right_down= false
-	  if @nha[i][j] != "."  
-		  if @nha[i][j] == object
-		    if (j+1)<9
-		      if @nha[i][j+1] == object
-		  	    counter_right= counter_right +1
-		  	    right = walkthrough_right(i,j,counter_right)
-		  	    if right== true 
-		  	      return true
-		        end
-		      end
-		    end  
-		    if ((i+1)<9) or ((j+1)<9)
-		      if @nha[i+1][j+1]	== object
-		  	    counter_right_down = counter_right_down +1
-		  	    right_down = walkthrough_right_down(i,j,counter_right_down)
-            if right_down==true 
-		  	      return true
-		        end		    
-		      end
-		    end  
-		    if (i+1)<9
-		      if @nha[i+1][j]	== object
-		  	    counter_down = counter_down+1
-		  	    down = walkthrough_down(i,j,counter_down)
-		  	    if down == true
-		  	      return true
-		        end
-		      end
-        end
-		    if (i+1) < 9 and (j-1) > 0
-		  	  if @nha[i+1][j-1]	== object
-		  		  counter_left_down= counter_left_down+1
-		  	  	left_down = walkthrough_left_down(i,j,counter_left_down)
-		  	    if left_down == true
-		  	      return true
-		        end
-		  	  end
-		    end
-  
-        #If one of them is true, there is a win chance
-		    if right== false and right_down==false and down == false and left_down == false
-		  	  return false
-		    end
-		  end  
-	  end
-	end
-  # Rekursiv function to walk through the array and find a win situation
-	def walkthrough_right( i, j, counter_right)
-		if counter_right == 4
-			return true
-		end
+  def walkthrough()
+    counter_right= counter_right_down= counter_down= counter_left_down = 0		
+		horizon=vertical = false
 		
-		if @nha[i][j+counter_right-1] == @nha[i][j+counter_right]
-			counter_right= counter_right +1
-			walkthrough_right(i,j,counter_right)
-		else 
-			return false
-		end
-
+	  horizon = choose_left_right_path(@turn[0],@turn[1],@turn[2])      
+	  if horizon == true
+	    return true
+	  else
+	    return false
+	  end    
 	end
   # Rekursiv function to walk through the array and find a win situation
-	def walkthrough_right_down( i, j, counter_right_down)
-		if counter_right_down == 4
-			return true
-		end
-
-		if @nha[i+(counter_right_down-1)][j+(counter_right_down-1)]	== @nha[i+counter_right_down][j+counter_right_down]
-			counter_right_down= counter_right +1
-			walkthrough_right_down(i,j,counter_right_down)
-		else 
-			return false
-		end
-	end
-
-  # Rekursiv function to walk through the array and find a win situation
-	def walkthrough_down( i, j, counter_down)
-		if counter_down == 4
-			return true
-		end
-	    
-		if @nha[i+(counter_down-1)][j] == @nha[i+counter_down][j]
-			counter_down= counter_right+1
-			walkthrough_down(i,j,counter_down)
-		  else 
-			return false 
-		end
+	def choose_left_right_path(i,j,object)
+	  counter_l = 0
+	  counter_r=0    
+	  choose_winner =0   
+	  walkthrough_left(i,j,counter_l,object)
+	  walkthrough_right(i,j,counter_r,object)
+	  
+	  choose_winner = @counter_r+@counter_l
+	  if choose_winner == 4
+	    return true
+	  else
+	    return false
+	  end    
 	end
 	
-  # Rekursiv function to walk through the array and find a win situation
-	def walkthrough_left_down( i, j, counter_left_down)
-		if counter_left_down == 4
-			return true
-		end
-
-		if @nha[i-(counter_left_down-1)][j-(counter_left_down-1)]	== @nha[i+counter_left_down][j+counter_left_down]
-			counter_left_down= counter_left_down+1
-			walkthrough_left_down(i,j,counter_right_down)
-		  else 
-		 return false
-		end
-
+	def walkthrough_left( i,j, counter_l, object)
+	  if counter_l == 4
+	    return counter_l
+	  end
+	  if @nha[i][j-counter_l] == object
+	    counter_l+=1
+	    puts counter_l
+	    walkthrough_left(i,j,counter_l,object)
+	  else
+	    return counter_l
+	  end  
+	     
 	end
+	
+	def walkthrough_right( i, j, counter_r, object)
+	   if counter_r == 4
+	    return counter_r
+	  end
+	   
+	   if @nha[i][j+counter_r] == object 
+	    counter_r+=1
+	    puts counter_r
+	    walkthrough_right(i,j,counter_r,object)
+	      
+	   else
+	    return counter_r
+	   end
+	end
+
+  
+
 
 end
 
