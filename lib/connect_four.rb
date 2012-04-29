@@ -17,5 +17,5 @@ module ConnectFour
 
 	
 
-#	start.walktrough(2,3)
+
 end

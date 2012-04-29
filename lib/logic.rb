@@ -38,18 +38,18 @@ class Logic
          # print "column is full please insert in other column"
       
   			#else
-  		    
-			   @game_field.add_object(who, number)
-			   if who ==1
-			     who =0
-			   else
-			    who+=1
-			   end   
-			  #end
+  		   if number <9 and number >0 
+			    @game_field.add_object(who, number)
+			    if who ==1
+			      who =0
+			    else
+			      who+=1
+			    end   
+			   
 			  @game_field.print_game_field
 			  #counter +=1
 		 # end
-		  
+		    end
 		  winner = game_over(who)
 		  if winner !=nil
 		    break
