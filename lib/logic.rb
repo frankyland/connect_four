@@ -72,9 +72,9 @@ class Logic
 		  
 			  win = @game_field.walkthrough()
 			  if win == true
-			    return player[who]
-		    else    
-				  return nil
+			    return print "THE WINNER IS#{player[who]}"		    
+			    else    
+				    return print "wank in the wind"
       	end  	
   end		
 end

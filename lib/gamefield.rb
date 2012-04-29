@@ -351,11 +351,29 @@ class GameField
 	  
 	    if @nha2[i][j] != nil
 	      if @nha2[i][j] == object
-	      puts "enter#{@nha2[i][j]}"
-	        ru=   walkhigh(i,j,object)                
-	        ru =  walkright(i,j,object)
-	        if ru==0
-	            puts "WINNNNNNNNER"
+	 #     puts "enter#{@nha2[i][j]}"
+	        ru1=   walkhigh(i,j,object)                
+	        if ru1==0
+	            puts "WINNNNNNNNER1"
+	            return true
+	            break
+	        end
+	        ru2 =  walkright(i,j,object)
+	        if ru2==0
+	            puts "WINNNNNNNNER2"
+	            return true
+	            break
+	        end
+	        ru3 = walkleft_down(i,j,object)
+	        if ru3==0
+	            puts "WINNNNNNNNER3"
+	            return true
+	            break
+	        end
+	        ru4 = walkright_down(i,j,object)
+	        if ru4==0
+	            puts "WINNNNNNNNER4"
+	            return true
 	            break
 	        end
 	      end
@@ -370,7 +388,7 @@ class GameField
   w=0
   counter =4
   while w < 4
-  
+  print "wah"
    if @nha2[i][j+w] == object
      puts "high#{counter}"
      counter =counter -1
@@ -387,7 +405,7 @@ class GameField
      while w < 4
   
       if @nha2[i+w][j] == object
-       puts "right#{counter}"
+  #     puts "right#{counter}"
       counter =counter -1
     
       end
@@ -395,8 +413,36 @@ class GameField
     end
     return counter
   end
-
   
+   def walkleft_down(i,j,object)
+     w=0
+     counter =4
+     while w < 4
+  
+      if @nha2[i-w][j-w] == object
+ #      puts "left_down#{counter}"
+      counter =counter -1
+    
+      end
+    w+=1
+    end
+    return counter
+  end
+  
+  def walkright_down(i,j,object)
+     w=0
+     counter =4
+     while w < 4
+  
+      if @nha2[i-w][j+w] == object
+       puts "right_down#{counter}"
+      counter =counter -1
+    
+      end
+    w+=1
+    end
+    return counter
+  end
 
 
 end
