@@ -6,7 +6,7 @@ class Logic
 	  
 	end
 	
-	
+  # Define the 2 Player	
 	def player 
 		["X", "O"]
 	end 
@@ -38,20 +38,21 @@ class Logic
          # print "column is full please insert in other column"
       
   			#else
+  			 # To ensure that just numbers from 1 till 8 are allowed
   		   if number <9 and number >0 
 			    @game_field.add_object(who, number)
+			    #Change the player by set the variable "who" between 0 and 1
 			    if who ==1
 			      who =0
 			    else
 			      who+=1
 			    end   
-			   
-			  @game_field.print_game_field
-			  #counter +=1
-		 # end
+			   #Print the Game Field
+			   @game_field.print_game_field
 		    end
-		  winner = game_over(who)
-		  if winner !=nil
+		    # Checked if there were a Winner by now
+		    winner = game_over(who)
+		    if winner !=nil
 		    break
 		  end  
     end 
@@ -67,7 +68,7 @@ class Logic
 	def game_over(who)
 		win = false
 
-		  
+		    #Starts a Method that returns true if there is a win in this game  
 			  win = @game_field.walkthrough()
 			  if win == true
 			    return print "THE WINNER IS#{player[who]}"		    
