@@ -54,8 +54,6 @@ class Logic
 		  if winner !=nil
 		    break
 		  end  
-	#	  end_turn= !@gamefield.empty_space(counter) or ( winner != nil)
-	#	  break if (end_turn or !turn_right)
     end 
 	
 	  if winner != nil
@@ -73,8 +71,6 @@ class Logic
 			  win = @game_field.walkthrough()
 			  if win == true
 			    return print "THE WINNER IS#{player[who]}"		    
-			    else    
-				    return print "wank in the wind"
       	end  	
   end		
 end
