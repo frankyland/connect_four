@@ -10,6 +10,7 @@ class GameField
 	  @counter_l = 0
 	  @counter_r=0
 		@nha = SparseArray.new
+		@nha2 = SparseArray.new
 		@turns = SparseArray.new
     @turn = Array.new
 #		@player_x = Player.new(:x)
@@ -28,7 +29,7 @@ class GameField
 	# The Method returns the Gamefield
 	def create_gamefield_array
 	
-	# @nha = arrays(8,8)
+	# @na = arrays(98,98)
 			
 		i=0
 
@@ -107,9 +108,11 @@ class GameField
           @turn[0] = @one
           @turn[1] = number
           @turn[2] = act_player[who]
-          
+          puts @turn[0]
+          puts @turn[1]
+          puts @turn[2]
           @one= @one -1
-        
+          turns(@turn)
         else 
           puts "Please choose another column"
         end
@@ -117,9 +120,12 @@ class GameField
       when 2
         if @two >=0
           insert(number, @two, who)
-          @turn[0] = @one
+          @turn[0] = @two
           @turn[1] = number
           @turn[2] = act_player[who]
+          puts @turn[0]
+          puts @turn[1]
+          puts @turn[2]
           turns(@turn)
           @two= @two-1
         else
@@ -129,9 +135,12 @@ class GameField
       when 3
         if @three >=0
           insert(number, @three, who)
-          @turn[0] = @one
+          @turn[0] = @three
           @turn[1] = number
           @turn[2] = act_player[who]
+          puts @turn[0]
+          puts @turn[1]
+          puts @turn[2]
           turns(@turn)
           @three=@three -1
         else
@@ -141,9 +150,12 @@ class GameField
       when 4
         if @four >=0
           insert(number, @four, who)
-          @turn[0] = @one
+          @turn[0] = @four
           @turn[1] = number
           @turn[2] = act_player[who]
+          puts @turn[0]
+          puts @turn[1]
+          puts @turn[2]
           turns(@turn)
           @four=@four-1
         else
@@ -154,9 +166,12 @@ class GameField
       when 5
         if @five >=0
           insert(number, @five, who)
-          @turn[0] = @one
+          @turn[0] = @five
           @turn[1] = number
           @turn[2] = act_player[who]
+          puts @turn[0]
+          puts @turn[1]
+          puts @turn[2]
           turns(@turn)
           @five=@five-1
         else
@@ -166,9 +181,12 @@ class GameField
       when 6
         if @six >=0
           insert(number, @six, who)
-          @turn[0] = @one
+          @turn[0] = @six
           @turn[1] = number
           @turn[2] = act_player[who]
+          puts @turn[0]
+          puts @turn[1]
+          puts @turn[2]
           turns(@turn)
           @six=@six-1
         else
@@ -178,9 +196,12 @@ class GameField
       when 7
         if @seven >=0
           insert(number, @seven, who)
-          @turn[0] = @one
+          @turn[0] = @seven
           @turn[1] = number
           @turn[2] = act_player[who]
+          puts @turn[0]
+          puts @turn[1]
+          puts @turn[2]
           turns(@turn)
           @seven=@seven-1
         else
@@ -190,9 +211,12 @@ class GameField
       when 8
         if @eight >=0
           insert(number, @eight, who)
-          @turn[0] = @one
+          @turn[0] = @eight
           @turn[1] = number
           @turn[2] = act_player[who]
+          puts @turn[0]
+          puts @turn[1]
+          puts @turn[2]
           turns(@turn)
           @eight=@eight-1
         else
@@ -211,14 +235,15 @@ class GameField
   def insert(number, counter, who)
     
     @nha[number-1][counter] = act_player[who]
- 
+    @nha2[number-1][counter] = act_player[who]
+  
   end 
  
-  def turns(zug)
+  def turns(turn)
     i=0
     counter=0
     while i<3 
-      @turns[i][@x] = zug[i]
+      @turns[i][@x] = @turn[i]
  
  
       i+=1
@@ -266,11 +291,15 @@ class GameField
 	  counter_l = 0
 	  counter_r=0    
 	  choose_winner =0   
-	  walkthrough_left(i,j,counter_l,object)
-	  walkthrough_right(i,j,counter_r,object)
+
+
+    walkthrough_test( object)
+	 # walkthrough_left(i,j,counter_l,object)
+
+	 # walkthrough_right(i,j,counter_r,object)
 	  
 	  choose_winner = @counter_r+@counter_l
-	  if choose_winner == 4
+	  if choose_winner > 4
 	    return true
 	  else
 	    return false
@@ -278,36 +307,96 @@ class GameField
 	end
 	
 	def walkthrough_left( i,j, counter_l, object)
+	  puts "array element: #{@nha[i][j]}"
+	  puts "object_ #{object}"
+	  
 	  if counter_l == 4
 	    return counter_l
 	  end
 	  if @nha[i][j-counter_l] == object
 	    counter_l+=1
-	    puts counter_l
+	    puts "leftc: #{counter_l}"
 	    walkthrough_left(i,j,counter_l,object)
 	  else
+	  print "bla"
 	    return counter_l
 	  end  
 	     
 	end
 	
 	def walkthrough_right( i, j, counter_r, object)
+	  puts "array element: #{@nha[i][j]}"
+	  puts "object_ #{object}"
 	   if counter_r == 4
 	    return counter_r
 	  end
 	   
 	   if @nha[i][j+counter_r] == object 
+	    puts "rightc: '{counter_r}"
 	    counter_r+=1
-	    puts counter_r
 	    walkthrough_right(i,j,counter_r,object)
-	      
+  
 	   else
+	    print "la"
 	    return counter_r
 	   end
 	end
+ def walkthrough_test( object)
+	counter=4
+	ru =4
+	i,j =0
+	while i < 8
+	  j=0
+	  while j <8
+	  
+	    if @nha2[i][j] != nil
+	      if @nha2[i][j] == object
+	      puts "enter#{@nha2[i][j]}"
+	        ru=   walkhigh(i,j,object)                
+	        ru =  walkright(i,j,object)
+	        if ru==0
+	            puts "WINNNNNNNNER"
+	            break
+	        end
+	      end
+	    end  
+	  j+=1
+	  end  
+	i+=1   
+	end
+ end
+
+  def walkhigh(i,j,object)
+  w=0
+  counter =4
+  while w < 4
+  
+   if @nha2[i][j+w] == object
+     puts "high#{counter}"
+     counter =counter -1
+    
+   end
+   w+=1
+   end
+   return counter
+  end
+
+  def walkright(i,j,object)
+     w=0
+     counter =4
+     while w < 4
+  
+      if @nha2[i+w][j] == object
+       puts "right#{counter}"
+      counter =counter -1
+    
+      end
+    w+=1
+    end
+    return counter
+  end
 
   
 
 
 end
-
