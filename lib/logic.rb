@@ -1,4 +1,5 @@
 require 'gamefield'
+require 'player'
 class Logic
   
   def initialize()
@@ -16,8 +17,8 @@ class Logic
 	# Define a Method that 2 player playing against each other connect four
   def two_player_game(input)
 	   
-  	game_counter=0
-  	draw =false
+  	game_counter= 0
+  	draw = false
 	  winner = false
 	  who = 0
 	 
@@ -31,28 +32,31 @@ class Logic
       end   
 		  print " It's #{player[who]} turn:" 
 		  number = input.gets.to_i
+		  
+		  # Check if a column is full
+		  # So the Player isnt changing until the player set a column which isnt full
 		  if @game_field.full_column(number) == false	
-		  	
+		    
   		  # To ensure that just numbers from 1 till 8 are allowed
-  		  if number <9 and number >0 
+  		  if number < 9 and number > 0 
 			     
 		      @game_field.add_object(who, number)
-		      game_counter+=1
+		      game_counter+= 1
 		      # Change the player by set the variable "who" between 0 and 1
-		      if who ==1
-			      who =0
+		      if who == 1
+			      who = 0
 			    else
-			      who+=1
+			      who+= 1
 			    end   
 			    # Print the Game Field
 			    @game_field.print_game_field
 		    end
 		    # Checked if there were a Winner by now
 		    winner = game_over(who)
-		    if winner !=nil
+		    if winner != nil
 		      break
 		    end
-		  end  
+	    end  
     end 
 	
 	  if winner != nil

@@ -236,15 +236,60 @@ class GameField
   #So if the column is full no element can enter there 
   def full_column(column)
     i=0
-    while i<8 do
+    # Look if there is an full column
+    case column
+      when 1
+        if @one < 0 
+         return true
+        else
+          return false
+        end    
+      when 2
+        if @two < 0 
+          return true
+        else
+          return false
+        end    
+      when 3
+        if @three < 0 
+          return true
+        else
+          return false
+        end
+      when 4
+        if @four < 0 
+          return true
+        else
+          return false
+        end
+      when 5
+        if @five < 0 
+          return true
+        else
+          return false
+        end
+      when 6
+        if @six < 0 
+          return true
+        else
+          return false
+        end
+      when 7
+        if @seven < 0 
+          return true
+        else
+          return false
+        end
+      when 8
+        if @eight < 0 
+          return true
+        else
+          return false
+        end
+    end 
+      
     
-      if @nha[i][column] == "."
-        return true
-      else
-        false
-      end    
-      i+=1
-    end
+    
   end 
 
    # This Method walks through the 2 dimensional Array to check if there is  a Line with
