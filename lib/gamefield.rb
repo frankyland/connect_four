@@ -11,8 +11,6 @@ class GameField
 		@nha2 = SparseArray.new
 		@turns = SparseArray.new
     @turn = Array.new
-	#	@player_x = Player.new(:x)
-	#	@player_o = Player.new(:o)
 	end
  	
 	# "create_gamefield_array" defined a 2 dimensional Array and fill it with a Symbol to
@@ -89,9 +87,7 @@ class GameField
           @turn[0] = @one
           @turn[1] = number
           @turn[2] = act_player[who]
- 
           @one= @one -1
-          turns(@turn)
         else 
           puts "Please choose another column"
         end
@@ -103,8 +99,6 @@ class GameField
           @turn[0] = @two
           @turn[1] = number
           @turn[2] = act_player[who]
-          
-          turns(@turn)
           @two= @two-1
         else
           puts "Please choose another column"
@@ -117,8 +111,6 @@ class GameField
           @turn[0] = @three
           @turn[1] = number
           @turn[2] = act_player[who]
-
-          turns(@turn)
           @three=@three -1
         else
           puts "Please choose another column"
@@ -131,8 +123,6 @@ class GameField
           @turn[0] = @four
           @turn[1] = number
           @turn[2] = act_player[who]
-
-          turns(@turn)
           @four=@four-1
         else
           puts "Please choose another column"
@@ -146,8 +136,6 @@ class GameField
           @turn[0] = @five
           @turn[1] = number
           @turn[2] = act_player[who]
-
-          turns(@turn)
           @five=@five-1
         else
           puts "Please choose another column"
@@ -160,7 +148,6 @@ class GameField
           @turn[0] = @six
           @turn[1] = number
           @turn[2] = act_player[who]
-          turns(@turn)
           @six=@six-1
         else
           puts "Please choose another column"
@@ -173,8 +160,6 @@ class GameField
           @turn[0] = @seven
           @turn[1] = number
           @turn[2] = act_player[who]
-          
-          turns(@turn)
           @seven=@seven-1
         else
           puts "Please choose another column"
@@ -187,8 +172,6 @@ class GameField
           @turn[0] = @eight
           @turn[1] = number
           @turn[2] = act_player[who]
-          
-          turns(@turn)
           @eight=@eight-1
         else
           puts "Please choose another column"
@@ -210,19 +193,7 @@ class GameField
     @nha2[number-1][counter] = act_player[who]
   
   end 
- 
-  # 
-  def turns(turn)
-    i=0
-    counter=0
-    while i<3 
-      @turns[i][@x] = @turn[i]
- 
- 
-      i+=1
-    end
-    @x+=1
-  end  
+  
   # This Method test, if the Game Field is empty or not
   def empty_space(counter)
     if counter == 64
@@ -287,9 +258,6 @@ class GameField
           return false
         end
     end 
-      
-    
-    
   end 
 
    # This Method walks through the 2 dimensional Array to check if there is  a Line with
@@ -315,7 +283,7 @@ class GameField
 	  # The Methods returns a number of found objects in a same line
 	  while i < 8
 	    j=0
-	    while j <8
+	    while j < 8
 	      
 	      if @nha2[i][j] != nil
 	        if @nha2[i][j] == object

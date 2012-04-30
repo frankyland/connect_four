@@ -3,15 +3,26 @@ require 'player'
 class Logic
   
   def initialize()
-		@game_field = GameField.new
-	  
+		@game_field = GameField.new	 
+	  @name = Array.new
+
 	end
 	
   # Define the 2 Player	
-	def player 
-		["X", "O"]
+	def player(name) 
+	  
+	 @name.push(name)
+	  	
 	end 
 	
+	  def set_player(input) 
+        print "Please enter your name : "
+        @name[0] = input.gets
+        print "Please enter your name : "
+        @name[1] = input.gets
+      
+            
+  end  
 	
 	
 	# Define a Method that 2 player playing against each other connect four
@@ -23,18 +34,19 @@ class Logic
 	  who = 0
 	 
     while true
-
+   
 		  # When at the End all fields are full and no winner was set , the game will end in a draw 
 		  draw = @game_field.empty_space(game_counter) 
 		  if draw == true
 		    puts "It was a great Game, thats why this is a Draw. Try it next Time!"
         break
       end   
-		  print " It's #{player[who]} turn:" 
+		  print " It's #{@name[who]} turn:" 
+		#  print  player[who]
 		  number = input.gets.to_i
 		  
 		  # Check if a column is full
-		  # So the Player isnt changing until the player set a column which isnt full
+		  # So the player isnt changing until the player set a column which isnt full
 		  if @game_field.full_column(number) == false	
 		    
   		  # To ensure that just numbers from 1 till 8 are allowed
