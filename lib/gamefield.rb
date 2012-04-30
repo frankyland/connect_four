@@ -251,33 +251,18 @@ class GameField
 
    # This Method walks through the 2 dimensional Array to check if there is  a Line with
   def walkthrough()
-    counter_right= counter_right_down= counter_down= counter_left_down = 0		
-		horizon=vertical = false
-		
-	  horizon = choose_left_right_path(@turn[0],@turn[1],@turn[2])      
-	  if horizon == true
-	    return true
-	  else
-	    return false
-	  end    
-	end
-  # Rekursiv function to walk through the array and find a win situation
-	def choose_left_right_path(i,j,object)
-	      
-	  choose_winner =false   
-
-
-    choose_winner= walkthrough_test( object)
+    choose_winner =false   
+    choose_winner= walkthrough_test( @turn[2])
  
-	  
 	  if choose_winner ==true
 	    return true
 	  else
 	    return false
 	  end    
-	end
-	
- def walkthrough_test( object)
+ 	end
+ 	
+  # Iterativ function to walk through the array and find a win situation
+  def walkthrough_test( object)
 	counter=4
 	
 	i,j =0
