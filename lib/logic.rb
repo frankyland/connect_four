@@ -38,13 +38,13 @@ class Logic
 			     
 		      @game_field.add_object(who, number)
 		      game_counter+=1
-		      #Change the player by set the variable "who" between 0 and 1
+		      # Change the player by set the variable "who" between 0 and 1
 		      if who ==1
 			      who =0
 			    else
 			      who+=1
 			    end   
-			    #Print the Game Field
+			    # Print the Game Field
 			    @game_field.print_game_field
 		    end
 		    # Checked if there were a Winner by now

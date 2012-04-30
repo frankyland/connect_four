@@ -7,8 +7,6 @@ class GameField
 	def initialize()
     @one= @two= @three=@four=@five=@six=@seven=@eight=7
 	  @x=0
-	  @counter_l = 0
-	  @counter_r=0
 		@nha = SparseArray.new
 		@nha2 = SparseArray.new
 		@turns = SparseArray.new
@@ -263,103 +261,102 @@ class GameField
  	
   # Iterativ function to walk through the array and find a win situation
   def walkthrough_test( object)
-	counter=4
-	
-	i,j =0
-	while i < 8
-	  j=0
-	  while j <8
+	  counter=4
+	  i,j =0
 	  
-	    if @nha2[i][j] != nil
-	      if @nha2[i][j] == object
+	  # This Two Loops run the intire nested hash Array along
+	  # Ignores all fields which are empty
+	  # The loop goes for each position there an object through four Methods
+	  # The Methods returns a number of found objects in a same line
+	  while i < 8
+	    j=0
+	    while j <8
+	      
+	      if @nha2[i][j] != nil
+	        if @nha2[i][j] == object
 	
-	        ru1=   walkhigh(i,j,object)                
-	        if ru1==0
+	          ru1=   walkhigh(i,j,object)                
+	          if ru1==0
 	            puts "WINNNNNNNNER1"
 	            return true
 	            break
-	        end
-	        ru2 =  walkright(i,j,object)
-	        if ru2==0
+	          end
+	      
+	          ru2 =  walkright(i,j,object)
+	          if ru2==0
 	            puts "WINNNNNNNNER2"
 	            return true
 	            break
-	        end
-	        ru3 = walkleft_down(i,j,object)
-	        if ru3==0
+	          end
+	      
+	          ru3 = walkleft_down(i,j,object)
+	          if ru3==0
 	            puts "WINNNNNNNNER3"
 	            return true
 	            break
-	        end
-	        ru4 = walkright_down(i,j,object)
-	        if ru4==0
+	          end
+	      
+	          ru4 = walkright_down(i,j,object)
+	          if ru4==0
 	            puts "WINNNNNNNNER4"
 	            return true
 	            break
+	          end
 	        end
-	      end
+	      end  
+	    j+=1
 	    end  
-	  j+=1
-	  end  
-	i+=1   
-	end
- end
+	  i+=1   
+	  end
+  end
 
+  # Proofs if a horizon line holds a Win 
   def walkhigh(i,j,object)
-  w=0
-  counter =4
-  while w < 4
-  print "wah"
-   if @nha2[i][j+w] == object
-     puts "high#{counter}"
-     counter =counter -1
-    
-   end
-   w+=1
-   end
-   return counter
+    w=0
+    counter =4
+    while w < 4
+      if @nha2[i][j+w] == object
+        puts "high#{counter}"
+        counter =counter -1
+      end
+      w+=1
+    end
+    return counter
   end
-
+  
+  # Proofs if a vertical line holds a Win
   def walkright(i,j,object)
-     w=0
-     counter =4
-     while w < 4
-  
+    w=0
+    counter =4
+    while w < 4
       if @nha2[i+w][j] == object
-  
-      counter =counter -1
-    
+        counter =counter -1
       end
     w+=1
     end
     return counter
   end
   
-   def walkleft_down(i,j,object)
-     w=0
-     counter =4
-     while w < 4
-  
+  # Proofs if a line from one point to point down right holds a Win
+  def walkleft_down(i,j,object)
+    w=0
+    counter =4
+    while w < 4
       if @nha2[i-w][j-w] == object
- 
-      counter =counter -1
-    
+        counter =counter -1
       end
     w+=1
     end
     return counter
   end
   
-  
+  # Proofs if a line from one point to point down left holds a Win
   def walkright_down(i,j,object)
-     w=0
-     counter =4
-     while w < 4
-  
-      if @nha2[i-w][j+w] == object
-   
+    w=0
+    counter =4
+    while w < 4 
+     if @nha2[i-w][j+w] == object 
       counter =counter -1
-    
       end
     w+=1
     end
