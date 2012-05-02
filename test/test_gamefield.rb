@@ -12,13 +12,16 @@ test_array_c = [['.','.','.','.','x','x','x','x'],['.','.','.','.','.','.','.','
 
 test_nha_d = new SparseArray.new	
 	
-	def Test_create_gamefield
+	def test_create_gamefield
 		test_field = GameField.new
-		test_field.create_gamefield_array(test_nha_d)
-		test_field.print_game_field(test_nha_d)
-
+		#test_field.create_gamefield_array()
+		test_field.print_game_field()
     
-			assert_not_nil(test_field.walkthrough(1,1))			
+    
+		#	assert_not_nil(test_field.walkthrough())			
 	end
 
+  def test_empty_array
+  
+  end
 end

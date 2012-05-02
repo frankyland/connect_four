@@ -27,6 +27,7 @@ class GameField
 			end
 			i+=1
 		end
+		return true
 	end	
 	
 	# Fuse the Array with the elements x and o with an array with points so the field has a visual brighter sightf
@@ -43,7 +44,7 @@ class GameField
 		  end  
 		  i+=1
 		end  
-		
+		return true
 	end
 	
 	# Print the field in his current state with all changes which appeared during the game
@@ -64,6 +65,7 @@ class GameField
     end
    
     puts "1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |"	    	
+    return true
 	end
 
   #Print the line with the current field Elements 

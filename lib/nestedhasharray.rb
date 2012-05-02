@@ -9,10 +9,6 @@ class SparseArray
     hash[key] ||= {}
   end
 
-  def rows
-    hash.length   
-  end
 
-  alias_method :length, :rows
 end
 

@@ -16,6 +16,10 @@ class Logic
     @name[1] = input.gets        
   end  
 	
+	# Get the player name for this match
+	def get_player
+	  @name
+	end
 	
 	# Define a Method that 2 player playing against each other connect four
   def two_player_game(input)
