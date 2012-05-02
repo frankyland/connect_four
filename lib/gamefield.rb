@@ -6,10 +6,8 @@ class GameField
 
 	def initialize()
     @one= @two= @three=@four=@five=@six=@seven=@eight=7
-	  @x=0
 		@nha = SparseArray.new
 		@nha2 = SparseArray.new
-		@turns = SparseArray.new
     @turn = Array.new
 	end
  	
@@ -52,13 +50,20 @@ class GameField
 	def print_game_field()
 
     i=0
+    print "| "
     while i < 8 do
-	    print "|"
+	    
 	    print_row( i)
+   #   puts  " |" 
+	#	  puts  "|---|---|---|---|---|---|---|---|" 
+	puts
+	  	print "| " 
+     
       i+=1
-      puts "|"
+     
     end
-    puts "|12345678|"	    	
+   
+    puts "1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |"	    	
 	end
 
   #Print the line with the current field Elements 
@@ -68,7 +73,9 @@ class GameField
 
     while i< 8 do 
       # Printing each field from the row        
-	  	print @nha[i][row]
+	  	print @nha[i][row] 
+	  	column+=1
+	  	print " | " unless row == 8
 	  	i+=1
 		end
   end
@@ -88,8 +95,6 @@ class GameField
           @turn[1] = number
           @turn[2] = act_player[who]
           @one= @one -1
-        else 
-          puts "Please choose another column"
         end
         
       when 2
@@ -100,8 +105,6 @@ class GameField
           @turn[1] = number
           @turn[2] = act_player[who]
           @two= @two-1
-        else
-          puts "Please choose another column"
         end
         
       when 3
@@ -112,8 +115,6 @@ class GameField
           @turn[1] = number
           @turn[2] = act_player[who]
           @three=@three -1
-        else
-          puts "Please choose another column"
         end
         
       when 4
@@ -124,8 +125,6 @@ class GameField
           @turn[1] = number
           @turn[2] = act_player[who]
           @four=@four-1
-        else
-          puts "Please choose another column"
         end
         
         
@@ -137,8 +136,6 @@ class GameField
           @turn[1] = number
           @turn[2] = act_player[who]
           @five=@five-1
-        else
-          puts "Please choose another column"
         end
         
       when 6
@@ -149,8 +146,6 @@ class GameField
           @turn[1] = number
           @turn[2] = act_player[who]
           @six=@six-1
-        else
-          puts "Please choose another column"
         end
         
       when 7
@@ -161,8 +156,6 @@ class GameField
           @turn[1] = number
           @turn[2] = act_player[who]
           @seven=@seven-1
-        else
-          puts "Please choose another column"
         end
         
       when 8
@@ -173,8 +166,6 @@ class GameField
           @turn[1] = number
           @turn[2] = act_player[who]
           @eight=@eight-1
-        else
-          puts "Please choose another column"
         end
         
       else print "no such number"
@@ -290,28 +281,28 @@ class GameField
 	
 	          ru1=   walkhigh(i,j,object)                
 	          if ru1==0
-	            puts "WINNNNNNNNER1"
+	        #    puts "WINNER1"
 	            return true
 	            break
 	          end
 	      
 	          ru2 =  walkright(i,j,object)
 	          if ru2==0
-	            puts "WINNNNNNNNER2"
+	         #   puts "WINNER2"
 	            return true
 	            break
 	          end
 	      
 	          ru3 = walkleft_down(i,j,object)
 	          if ru3==0
-	            puts "WINNNNNNNNER3"
+	          #  puts "WINNER3"
 	            return true
 	            break
 	          end
 	      
 	          ru4 = walkright_down(i,j,object)
 	          if ru4==0
-	            puts "WINNNNNNNNER4"
+	           # puts "WINNER4"
 	            return true
 	            break
 	          end
@@ -324,12 +315,13 @@ class GameField
   end
 
   # Proofs if a horizon line holds a Win 
+  # Each Time an object is found the counter is set one down
+  # At the end the counter will returned
   def walkhigh(i,j,object)
     w=0
     counter =4
     while w < 4
       if @nha2[i][j+w] == object
-        puts "high#{counter}"
         counter =counter -1
       end
       w+=1
@@ -338,6 +330,8 @@ class GameField
   end
   
   # Proofs if a vertical line holds a Win
+  # Each Time an object is found the counter is set one down
+  # At the end the counter will returned
   def walkright(i,j,object)
     w=0
     counter =4
@@ -351,6 +345,8 @@ class GameField
   end
   
   # Proofs if a line from one point to point down right holds a Win
+  # Each Time an object is found the counter is set one down
+  # At the end the counter will returned
   def walkleft_down(i,j,object)
     w=0
     counter =4
@@ -364,6 +360,8 @@ class GameField
   end
   
   # Proofs if a line from one point to point down left holds a Win
+  # Each Time an object is found the counter is set one down
+  # At the end the counter will returned
   def walkright_down(i,j,object)
     w=0
     counter =4

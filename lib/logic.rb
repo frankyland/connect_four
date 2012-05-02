@@ -9,19 +9,11 @@ class Logic
 	end
 	
   # Define the 2 Player	
-	def player(name) 
-	  
-	 @name.push(name)
-	  	
-	end 
-	
-	  def set_player(input) 
-        print "Please enter your name : "
-        @name[0] = input.gets
-        print "Please enter your name : "
-        @name[1] = input.gets
-      
-            
+	def set_player(input) 
+    print "Please enter your name : "
+    @name[0] = input.gets
+    print "Please enter your name : "
+    @name[1] = input.gets        
   end  
 	
 	
@@ -38,13 +30,13 @@ class Logic
 		  # When at the End all fields are full and no winner was set , the game will end in a draw 
 		  draw = @game_field.empty_space(game_counter) 
 		  if draw == true
-		    puts "It was a great Game, thats why this is a Draw. Try it next Time!"
+		    puts "It was a great Game, but unfortunetley this is a Draw. Try it next Time!"
         break
       end   
-		  print " It's #{@name[who]} turn:" 
-		#  print  player[who]
-		  number = input.gets.to_i
+		  print " It's #{@name[who]} turn:" 		
+		  #Get the number vom the Terminal console
 		  
+		  number = input.gets.to_i
 		  # Check if a column is full
 		  # So the player isnt changing until the player set a column which isnt full
 		  if @game_field.full_column(number) == false	
@@ -55,38 +47,33 @@ class Logic
 		      @game_field.add_object(who, number)
 		      game_counter+= 1
 		      # Change the player by set the variable "who" between 0 and 1
-		      if who == 1
-			      who = 0
-			    else
-			      who+= 1
-			    end   
+		      
 			    # Print the Game Field
 			    @game_field.print_game_field
 		    end
 		    # Checked if there were a Winner by now
-		    winner = game_over(who)
-		    if winner != nil
-		      break
-		    end
-	    end  
+		    win = @game_field.walkthrough()
+			  if win == true
+			    winner_blessing(who)
+			    break
+			  end
+			  if who == 1
+			    who = 0
+			  else
+			    who+= 1
+			  end   	    
+      end  	  
     end 
-	
-	  if winner != nil
-		  return  player[who]
-	  else
-		  return nil
-	  end
   end
   
   
-  # Going through every field if the game is over and with that a winner is set
-	def game_over(who)
-		win = false
-      
-		  #Starts a Method that returns true if there is a win in this game  
-		  win = @game_field.walkthrough()
-			if win == true
-			  return print "THE WINNER IS#{player[who]}"		    
-      end  	
-  end		
+  	
+  
+  def winner_blessing(who)
+    puts "--What a Game!---------------------"
+    puts "----And the winner------------------------"
+    puts "--------of this furious Battle is : #{@name[who]}"
+    
+    puts "------------------------"
+  end
 end
