@@ -15,7 +15,7 @@ module ConnectFour
 	#Ask for individual Player names
 	game.set_player(STDIN)
 	#Create the 2 Dimensional Array for the Game field
-	start.create_gamefield_array
+	start.create_game_field_array
 	#Print the Game field into the Terminal console
 	start.print_game_field
 	#Starts the Game against an other Player

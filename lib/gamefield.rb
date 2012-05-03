@@ -14,7 +14,7 @@ class GameField
 	# "create_gamefield_array" defined a 2 dimensional Array and fill it with a Symbol to
   # define "nil" on the gamefield.
 	# The Method returns the Gamefield
-	def create_gamefield_array
+	def create_game_field_array
 	
 		i=0
 		while i < 8  do

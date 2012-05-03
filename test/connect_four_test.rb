@@ -15,7 +15,7 @@ class ConnectFourTest < ConnectFourSpec
   def test_game_field
     game = GameField.new
     # Proofs if that the game field will be set
-    assert(game.create_gamefield_array, "Should be true") 
+    assert(game.create_game_field_array, "Should be true") 
     # Proofs if the array with the player names are not nil
     assert(game.print_game_field, "Should be true")   
   end
@@ -27,5 +27,5 @@ class ConnectFourTest < ConnectFourSpec
     
   end
   
-  def   
+    
 end

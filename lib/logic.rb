@@ -39,8 +39,7 @@ class Logic
       end   
 		  print " It's #{@name[who]} turn:" 		
 		  #Get the number vom the Terminal console
-		  
-		  number = input.gets.to_i
+		  number = input.gets.to_i 
 		  # Check if a column is full
 		  # So the player isnt changing until the player set a column which isnt full
 		  if @game_field.full_column(number) == false	
@@ -74,10 +73,10 @@ class Logic
   	
   
   def winner_blessing(who)
-    puts "--What a Game!---------------------"
-    puts "----And the winner------------------------"
+    puts "--What a Game!----------------------------------------"
+    puts "----And the winner------------------------------------"
     puts "--------of this furious Battle is : #{@name[who]}"
     
-    puts "------------------------"
+    puts "------------------------------------------------------"
   end
 end
